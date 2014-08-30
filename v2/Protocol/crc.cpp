@@ -3,9 +3,9 @@
 
 static const uint32_t crc32_poly = 0xEDB88320;
 
-uint16_t crc16(const void *data, uint8_t length)
+uint16_t crc16_ccitt(const void *data, uint8_t length)
 {
-    uint8_t x;
+  uint8_t x;
 	uint16_t crc = 0xFFFF;
 	unsigned char *current = (unsigned char *)data;
 
