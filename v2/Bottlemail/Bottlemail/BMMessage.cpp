@@ -38,11 +38,8 @@ void BMMessage::setCmd(uint8_t cmd)
 
 uint8_t* BMMessage::getPayload()
 {
-  if (!getPayloadSize())
-    return NULL;
-  
-  return _buffer + sizeof(BMMessageHeader);
- }
+ return _buffer + HEADER_SIZE;
+}
 
 uint8_t BMMessage::getPayloadSize()
 {
@@ -76,6 +73,11 @@ uint16_t BMMessage::getCRC()
   // Get the crc value that is behind the payload
   uint16_t crcIndex = getSizeWithoutCRC();
   return ((uint16_t)_buffer[crcIndex] << 8) | ((uint16_t) _buffer[crcIndex + 1]);
+}
+
+void BMMessage::setCRC()
+{
+  setCRC(computeCRC());
 }
 
 void BMMessage::setCRC(uint16_t crc)

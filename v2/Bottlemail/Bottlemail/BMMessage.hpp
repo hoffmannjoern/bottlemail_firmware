@@ -31,6 +31,7 @@ public:
   
   // Checksum
   uint16_t getCRC();
+  void setCRC();
   void setCRC(uint16_t crc);
   
   // Checksum helper
@@ -42,9 +43,9 @@ public:
   uint16_t getSizeWithoutCRC();
   
 private:
-  uint8_t *_buffer;
-  uint16_t _bufferSize;
-  uint8_t  _payloadSizeMax;
+  uint8_t  *_buffer;
+  uint16_t  _bufferSize;
+  uint8_t   _payloadSizeMax;
 };
 
 #endif

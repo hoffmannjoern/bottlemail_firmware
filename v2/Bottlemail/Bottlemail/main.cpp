@@ -3,12 +3,9 @@
 #include "BMMessage.hpp"
 
 using namespace std;
-int main(int argc, char *argv[])
-{
-  const uint16_t bufferSize = 64;
-	uint8_t buffer [bufferSize] = {'a', 6, 'H', 'e', 'l', 'l', 'o', 0, 0xe4, 0x57};
-  BMMessage msg1 = BMMessage(buffer, 10);
 
+void printMsg(BMMessage &msg1)
+{
   printf("Command %c\n", msg1.getCmd());
   printf("Payload %s\n", msg1.getPayload());
   printf("Size payload  %d\n", msg1.getPayloadSize());
@@ -18,23 +15,31 @@ int main(int argc, char *argv[])
   printf("Setted CRC    %x\n", msg1.getCRC());
   printf("Computed CRC  %x\n", msg1.computeCRC());
   printf("Check CRC     %d\n", msg1.isCRCValid());
+}
+
+int main(int argc, char *argv[])
+{
+  const uint16_t bufferSize = 64;
+	uint8_t buffer [bufferSize] = {'a', 6, 'H', 'e', 'l', 'l', 'o', 0, 0xe4, 0x57};
+  BMMessage msg1 = BMMessage(buffer, 10);
+  printMsg(msg1);
+  
   
   uint8_t str[] = "Hellp";
   int err = msg1.writePayload(0, 0);
   if (err) {
     printf("Error writing payload!");
   }
+  printMsg(msg1);
   
-  printf("Command %c\n", msg1.getCmd());
-  printf("Payload %s\n", msg1.getPayload());
-  printf("Size payload  %d\n", msg1.getPayloadSize());
-  printf("Size w/o CRC  %d\n", msg1.getSizeWithoutCRC());
-  printf("Size with CRC %d\n", msg1.getSize());
+  BMMessage msg2 = BMMessage(buffer, bufferSize);
+  msg2.setCmd('m');
+  msg2.setCRC();
+  printMsg(msg2);
   
-  printf("Setted CRC    %x\n", msg1.getCRC());
-  printf("Computed CRC  %x\n", msg1.computeCRC());
-  printf("Check CRC     %d\n", msg1.isCRCValid());
-
+  msg2.appendPayload('h');
+  msg2.appendPayload('\0');
+  printMsg(msg2);
   
   
   //msg1.setCRC(crc);
