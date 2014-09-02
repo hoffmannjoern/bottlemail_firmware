@@ -37,6 +37,49 @@
 		80828AC219B5C397009BCF56 /* cobs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cobs.c; sourceTree = "<group>"; };
 		80828AD019B5CB08009BCF56 /* BMMessage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BMMessage.hpp; sourceTree = "<group>"; };
 		80828AD119B5CB08009BCF56 /* BMMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BMMessage.cpp; sourceTree = "<group>"; };
+		80828AD719B5F4C6009BCF56 /* Descriptions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Descriptions.cpp; sourceTree = "<group>"; };
+		80828AD819B5F4C6009BCF56 /* Descriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Descriptions.h; sourceTree = "<group>"; };
+		80828AD919B5F4C6009BCF56 /* DummyDescriptions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DummyDescriptions.cpp; sourceTree = "<group>"; };
+		80828ADA19B5F4C6009BCF56 /* DummyDescriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummyDescriptions.h; sourceTree = "<group>"; };
+		80828ADB19B5F4C6009BCF56 /* ErrorFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorFormatter.h; sourceTree = "<group>"; };
+		80828ADC19B5F4C6009BCF56 /* ErrorPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorPrinter.h; sourceTree = "<group>"; };
+		80828ADD19B5F4C6009BCF56 /* Flags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flags.h; sourceTree = "<group>"; };
+		80828ADE19B5F4C6009BCF56 /* GlobalFixture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalFixture.cpp; sourceTree = "<group>"; };
+		80828ADF19B5F4C6009BCF56 /* GlobalFixture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalFixture.h; sourceTree = "<group>"; };
+		80828AE019B5F4C6009BCF56 /* Gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gui.h; sourceTree = "<group>"; };
+		80828AE119B5F4C6009BCF56 /* LinkedList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LinkedList.cpp; sourceTree = "<group>"; };
+		80828AE219B5F4C6009BCF56 /* LinkedList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
+		80828AE319B5F4C6009BCF56 /* Mock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mock.h; sourceTree = "<group>"; };
+		80828AE419B5F4C6009BCF56 /* MSVCErrorPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSVCErrorPrinter.h; sourceTree = "<group>"; };
+		80828AE519B5F4C6009BCF56 /* ParenPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParenPrinter.h; sourceTree = "<group>"; };
+		80828AE619B5F4C6009BCF56 /* QtGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QtGui.h; sourceTree = "<group>"; };
+		80828AE719B5F4C6009BCF56 /* RealDescriptions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RealDescriptions.cpp; sourceTree = "<group>"; };
+		80828AE819B5F4C6009BCF56 /* RealDescriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealDescriptions.h; sourceTree = "<group>"; };
+		80828AE919B5F4C6009BCF56 /* Root.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Root.cpp; sourceTree = "<group>"; };
+		80828AEA19B5F4C6009BCF56 /* SelfTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelfTest.h; sourceTree = "<group>"; };
+		80828AEB19B5F4C6009BCF56 /* StdHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdHeaders.h; sourceTree = "<group>"; };
+		80828AEC19B5F4C6009BCF56 /* StdioFilePrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdioFilePrinter.h; sourceTree = "<group>"; };
+		80828AED19B5F4C6009BCF56 /* StdioPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdioPrinter.h; sourceTree = "<group>"; };
+		80828AEE19B5F4C6009BCF56 /* StdTestSuite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdTestSuite.h; sourceTree = "<group>"; };
+		80828AEF19B5F4C6009BCF56 /* StdValueTraits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdValueTraits.h; sourceTree = "<group>"; };
+		80828AF019B5F4C6009BCF56 /* TeeListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeeListener.h; sourceTree = "<group>"; };
+		80828AF119B5F4C6009BCF56 /* TestListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestListener.h; sourceTree = "<group>"; };
+		80828AF219B5F4C6009BCF56 /* TestMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestMain.h; sourceTree = "<group>"; };
+		80828AF319B5F4C6009BCF56 /* TestRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestRunner.h; sourceTree = "<group>"; };
+		80828AF419B5F4C6009BCF56 /* TestSuite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestSuite.cpp; sourceTree = "<group>"; };
+		80828AF519B5F4C6009BCF56 /* TestSuite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSuite.h; sourceTree = "<group>"; };
+		80828AF619B5F4C6009BCF56 /* TestTracker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestTracker.cpp; sourceTree = "<group>"; };
+		80828AF719B5F4C6009BCF56 /* TestTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTracker.h; sourceTree = "<group>"; };
+		80828AF819B5F4C6009BCF56 /* unix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = unix.h; sourceTree = "<group>"; };
+		80828AF919B5F4C6009BCF56 /* ValueTraits.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ValueTraits.cpp; sourceTree = "<group>"; };
+		80828AFA19B5F4C6009BCF56 /* ValueTraits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValueTraits.h; sourceTree = "<group>"; };
+		80828AFB19B5F4C6009BCF56 /* Win32Gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Win32Gui.h; sourceTree = "<group>"; };
+		80828AFC19B5F4C6009BCF56 /* X11Gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = X11Gui.h; sourceTree = "<group>"; };
+		80828AFD19B5F4C6009BCF56 /* XmlFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmlFormatter.h; sourceTree = "<group>"; };
+		80828AFE19B5F4C6009BCF56 /* XmlPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmlPrinter.h; sourceTree = "<group>"; };
+		80828AFF19B5F4C6009BCF56 /* XUnitPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUnitPrinter.h; sourceTree = "<group>"; };
+		80828B0019B5F4C6009BCF56 /* YesNoRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YesNoRunner.h; sourceTree = "<group>"; };
+		80828B0119B6051F009BCF56 /* BMMessage_Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMMessage_Test.h; path = unittest/BMMessage_Test.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +112,8 @@
 		80828A8919B5C37A009BCF56 /* Bottlemail */ = {
 			isa = PBXGroup;
 			children = (
+				80828B0219B60525009BCF56 /* unittest */,
+				80828AD619B5F4C6009BCF56 /* cxxtest */,
 				80828AD019B5CB08009BCF56 /* BMMessage.hpp */,
 				80828AD119B5CB08009BCF56 /* BMMessage.cpp */,
 				80828A9319B5C397009BCF56 /* main.cpp */,
@@ -79,6 +124,63 @@
 				80828A8C19B5C37A009BCF56 /* Bottlemail.1 */,
 			);
 			path = Bottlemail;
+			sourceTree = "<group>";
+		};
+		80828AD619B5F4C6009BCF56 /* cxxtest */ = {
+			isa = PBXGroup;
+			children = (
+				80828AD719B5F4C6009BCF56 /* Descriptions.cpp */,
+				80828AD819B5F4C6009BCF56 /* Descriptions.h */,
+				80828AD919B5F4C6009BCF56 /* DummyDescriptions.cpp */,
+				80828ADA19B5F4C6009BCF56 /* DummyDescriptions.h */,
+				80828ADB19B5F4C6009BCF56 /* ErrorFormatter.h */,
+				80828ADC19B5F4C6009BCF56 /* ErrorPrinter.h */,
+				80828ADD19B5F4C6009BCF56 /* Flags.h */,
+				80828ADE19B5F4C6009BCF56 /* GlobalFixture.cpp */,
+				80828ADF19B5F4C6009BCF56 /* GlobalFixture.h */,
+				80828AE019B5F4C6009BCF56 /* Gui.h */,
+				80828AE119B5F4C6009BCF56 /* LinkedList.cpp */,
+				80828AE219B5F4C6009BCF56 /* LinkedList.h */,
+				80828AE319B5F4C6009BCF56 /* Mock.h */,
+				80828AE419B5F4C6009BCF56 /* MSVCErrorPrinter.h */,
+				80828AE519B5F4C6009BCF56 /* ParenPrinter.h */,
+				80828AE619B5F4C6009BCF56 /* QtGui.h */,
+				80828AE719B5F4C6009BCF56 /* RealDescriptions.cpp */,
+				80828AE819B5F4C6009BCF56 /* RealDescriptions.h */,
+				80828AE919B5F4C6009BCF56 /* Root.cpp */,
+				80828AEA19B5F4C6009BCF56 /* SelfTest.h */,
+				80828AEB19B5F4C6009BCF56 /* StdHeaders.h */,
+				80828AEC19B5F4C6009BCF56 /* StdioFilePrinter.h */,
+				80828AED19B5F4C6009BCF56 /* StdioPrinter.h */,
+				80828AEE19B5F4C6009BCF56 /* StdTestSuite.h */,
+				80828AEF19B5F4C6009BCF56 /* StdValueTraits.h */,
+				80828AF019B5F4C6009BCF56 /* TeeListener.h */,
+				80828AF119B5F4C6009BCF56 /* TestListener.h */,
+				80828AF219B5F4C6009BCF56 /* TestMain.h */,
+				80828AF319B5F4C6009BCF56 /* TestRunner.h */,
+				80828AF419B5F4C6009BCF56 /* TestSuite.cpp */,
+				80828AF519B5F4C6009BCF56 /* TestSuite.h */,
+				80828AF619B5F4C6009BCF56 /* TestTracker.cpp */,
+				80828AF719B5F4C6009BCF56 /* TestTracker.h */,
+				80828AF819B5F4C6009BCF56 /* unix.h */,
+				80828AF919B5F4C6009BCF56 /* ValueTraits.cpp */,
+				80828AFA19B5F4C6009BCF56 /* ValueTraits.h */,
+				80828AFB19B5F4C6009BCF56 /* Win32Gui.h */,
+				80828AFC19B5F4C6009BCF56 /* X11Gui.h */,
+				80828AFD19B5F4C6009BCF56 /* XmlFormatter.h */,
+				80828AFE19B5F4C6009BCF56 /* XmlPrinter.h */,
+				80828AFF19B5F4C6009BCF56 /* XUnitPrinter.h */,
+				80828B0019B5F4C6009BCF56 /* YesNoRunner.h */,
+			);
+			path = cxxtest;
+			sourceTree = "<group>";
+		};
+		80828B0219B60525009BCF56 /* unittest */ = {
+			isa = PBXGroup;
+			children = (
+				80828B0119B6051F009BCF56 /* BMMessage_Test.h */,
+			);
+			name = unittest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
