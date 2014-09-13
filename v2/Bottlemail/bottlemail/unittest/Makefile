@@ -18,6 +18,8 @@ BMMessage.o:
 crc.o:
 	$(CC) $(CFLAGS) -I$(CXX_INCLUDE) ../crc.cpp
 
+cobs.o:
+	$(CC) $(CFLAGS) -I$(CXX_INCLUDE) ../cobs.cpp
 
 clean:
 	rm -rf *.o BMMessageTest
