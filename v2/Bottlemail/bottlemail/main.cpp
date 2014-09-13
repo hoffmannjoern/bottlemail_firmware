@@ -54,6 +54,7 @@ void test3(Buffer &buffer)
   printMsg(msg);
   
   printf("Append payload 'h' :\n");
+  printf("Crc should now be 0 :\n");
   msg.appendPayload('h');
   msg.appendPayload('\0');
   printMsg(msg);
@@ -63,9 +64,31 @@ int main(int argc, char *argv[])
 {
   const uint16_t bufferSize = 64;
   uint8_t buffer [bufferSize] = {'a', 6, 'H', 'e', 'l', 'l', 'o', 0, 0xe4, 0x57};
+  
+  printf("Buffer Test:\n");
   Buffer bufferObj((char*)buffer, bufferSize);
-
   test1(bufferObj);
   test2(bufferObj);
   test3(bufferObj);
+  
+  printf("Dynamic Buffer Test:\n");
+  DynamicBuffer buf(10);
+  printf("Buffer pointer %p\n", buf.bytes);
+  printf("Buffer size %d\n", buf.size);
+  buf[0] = 'a';
+  test3(buf);
+  
+  printf("Static Buffer Test:\n");
+  StaticBuffer<20> bufSt;
+  Buffer buf2 = bufSt;
+  buf2[0] = 'H';
+  
+  printf("Buffer pointer %p\n", buf2.bytes);
+  printf("Buffer pointer %p\n", ((StaticBuffer<20>*)&buf2)->bytes);
+  printf("Buffer size %d\n", buf2.size);
+  
+  printf("Byte %c, %c", buf2[0], bufSt[0]);
+  
+  
+  
 }
