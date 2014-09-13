@@ -3,6 +3,9 @@
 
 #include "BMMessage.hpp"
 #include "Buffer.hpp"
+#include "StaticBuffer.hpp"
+#include "DynamicBuffer.hpp"
+#include "FillBuffer.hpp"
 
 using namespace std;
 
@@ -79,16 +82,34 @@ int main(int argc, char *argv[])
   test3(buf);
   
   printf("Static Buffer Test:\n");
-  StaticBuffer<20> bufSt;
-  Buffer buf2 = bufSt;
+  StaticBuffer<20> staticBuffer;
+  Buffer buf2 = staticBuffer;
   buf2[0] = 'H';
   
   printf("Buffer pointer %p\n", buf2.bytes);
   printf("Buffer pointer %p\n", ((StaticBuffer<20>*)&buf2)->bytes);
   printf("Buffer size %d\n", buf2.size);
-  
-  printf("Byte %c, %c", buf2[0], bufSt[0]);
-  
+  printf("Byte %c, %c\n\n", buf2[0], staticBuffer[0]);
   
   
+  printf("Fill Buffer Test: \n");
+  StaticBuffer<2> buhu;
+  FillBuffer fillBuffer(buhu);
+  
+  printf("Buffer pointer %p\n", fillBuffer.bytes);
+  printf("Buffer size %d\n", fillBuffer.size);
+  printf("Buffer length %d\n", fillBuffer.getLength());
+  printf("Buffer bytes %s\n", fillBuffer.bytes);
+
+  /*
+  for (int i = 0; i < 20; i++)
+  {
+    fillBuffer.appendByte('a' + i);
+  }*/
+  
+  fillBuffer.appendByte('z');
+  fillBuffer.appendByte(0);
+  fillBuffer.appendByte(0);
+  printf("Buffer length %d\n", fillBuffer.getLength());
+  printf("Buffer bytes : %s\n", fillBuffer.bytes);
 }

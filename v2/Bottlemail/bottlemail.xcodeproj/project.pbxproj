@@ -76,6 +76,9 @@
 		801A0E2619C461840062ECEB /* XUnitPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUnitPrinter.h; sourceTree = "<group>"; };
 		801A0E2719C461840062ECEB /* YesNoRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YesNoRunner.h; sourceTree = "<group>"; };
 		801A0E2919C4618F0062ECEB /* BMMessageTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMMessageTest.h; sourceTree = "<group>"; };
+		801A0E2A19C494520062ECEB /* DynamicBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DynamicBuffer.hpp; sourceTree = "<group>"; };
+		801A0E2B19C495300062ECEB /* StaticBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StaticBuffer.hpp; sourceTree = "<group>"; };
+		801A0E2C19C4954C0062ECEB /* FillBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FillBuffer.hpp; sourceTree = "<group>"; };
 		80D86CC719C460C500F565AC /* bottlemail */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = bottlemail; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D86CCA19C460C500F565AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +175,9 @@
 				801A0DF319C461240062ECEB /* BMMessage.cpp */,
 				801A0DF419C461240062ECEB /* BMMessage.hpp */,
 				801A0DF519C461240062ECEB /* Buffer.hpp */,
+				801A0E2C19C4954C0062ECEB /* FillBuffer.hpp */,
+				801A0E2B19C495300062ECEB /* StaticBuffer.hpp */,
+				801A0E2A19C494520062ECEB /* DynamicBuffer.hpp */,
 				801A0DF619C461240062ECEB /* cobs.c */,
 				801A0DF719C461240062ECEB /* cobs.h */,
 				801A0DF819C461240062ECEB /* crc.cpp */,
