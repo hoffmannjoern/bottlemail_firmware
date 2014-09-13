@@ -33,6 +33,49 @@
 		801A0DF719C461240062ECEB /* cobs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cobs.h; sourceTree = "<group>"; };
 		801A0DF819C461240062ECEB /* crc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crc.cpp; sourceTree = "<group>"; };
 		801A0DF919C461240062ECEB /* crc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = crc.hpp; sourceTree = "<group>"; };
+		801A0DFE19C461840062ECEB /* Descriptions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Descriptions.cpp; sourceTree = "<group>"; };
+		801A0DFF19C461840062ECEB /* Descriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Descriptions.h; sourceTree = "<group>"; };
+		801A0E0019C461840062ECEB /* DummyDescriptions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DummyDescriptions.cpp; sourceTree = "<group>"; };
+		801A0E0119C461840062ECEB /* DummyDescriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummyDescriptions.h; sourceTree = "<group>"; };
+		801A0E0219C461840062ECEB /* ErrorFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorFormatter.h; sourceTree = "<group>"; };
+		801A0E0319C461840062ECEB /* ErrorPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorPrinter.h; sourceTree = "<group>"; };
+		801A0E0419C461840062ECEB /* Flags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flags.h; sourceTree = "<group>"; };
+		801A0E0519C461840062ECEB /* GlobalFixture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalFixture.cpp; sourceTree = "<group>"; };
+		801A0E0619C461840062ECEB /* GlobalFixture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalFixture.h; sourceTree = "<group>"; };
+		801A0E0719C461840062ECEB /* Gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gui.h; sourceTree = "<group>"; };
+		801A0E0819C461840062ECEB /* LinkedList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LinkedList.cpp; sourceTree = "<group>"; };
+		801A0E0919C461840062ECEB /* LinkedList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
+		801A0E0A19C461840062ECEB /* Mock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mock.h; sourceTree = "<group>"; };
+		801A0E0B19C461840062ECEB /* MSVCErrorPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSVCErrorPrinter.h; sourceTree = "<group>"; };
+		801A0E0C19C461840062ECEB /* ParenPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParenPrinter.h; sourceTree = "<group>"; };
+		801A0E0D19C461840062ECEB /* QtGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QtGui.h; sourceTree = "<group>"; };
+		801A0E0E19C461840062ECEB /* RealDescriptions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RealDescriptions.cpp; sourceTree = "<group>"; };
+		801A0E0F19C461840062ECEB /* RealDescriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealDescriptions.h; sourceTree = "<group>"; };
+		801A0E1019C461840062ECEB /* Root.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Root.cpp; sourceTree = "<group>"; };
+		801A0E1119C461840062ECEB /* SelfTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelfTest.h; sourceTree = "<group>"; };
+		801A0E1219C461840062ECEB /* StdHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdHeaders.h; sourceTree = "<group>"; };
+		801A0E1319C461840062ECEB /* StdioFilePrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdioFilePrinter.h; sourceTree = "<group>"; };
+		801A0E1419C461840062ECEB /* StdioPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdioPrinter.h; sourceTree = "<group>"; };
+		801A0E1519C461840062ECEB /* StdTestSuite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdTestSuite.h; sourceTree = "<group>"; };
+		801A0E1619C461840062ECEB /* StdValueTraits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdValueTraits.h; sourceTree = "<group>"; };
+		801A0E1719C461840062ECEB /* TeeListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeeListener.h; sourceTree = "<group>"; };
+		801A0E1819C461840062ECEB /* TestListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestListener.h; sourceTree = "<group>"; };
+		801A0E1919C461840062ECEB /* TestMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestMain.h; sourceTree = "<group>"; };
+		801A0E1A19C461840062ECEB /* TestRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestRunner.h; sourceTree = "<group>"; };
+		801A0E1B19C461840062ECEB /* TestSuite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestSuite.cpp; sourceTree = "<group>"; };
+		801A0E1C19C461840062ECEB /* TestSuite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSuite.h; sourceTree = "<group>"; };
+		801A0E1D19C461840062ECEB /* TestTracker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestTracker.cpp; sourceTree = "<group>"; };
+		801A0E1E19C461840062ECEB /* TestTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTracker.h; sourceTree = "<group>"; };
+		801A0E1F19C461840062ECEB /* unix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = unix.h; sourceTree = "<group>"; };
+		801A0E2019C461840062ECEB /* ValueTraits.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ValueTraits.cpp; sourceTree = "<group>"; };
+		801A0E2119C461840062ECEB /* ValueTraits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValueTraits.h; sourceTree = "<group>"; };
+		801A0E2219C461840062ECEB /* Win32Gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Win32Gui.h; sourceTree = "<group>"; };
+		801A0E2319C461840062ECEB /* X11Gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = X11Gui.h; sourceTree = "<group>"; };
+		801A0E2419C461840062ECEB /* XmlFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmlFormatter.h; sourceTree = "<group>"; };
+		801A0E2519C461840062ECEB /* XmlPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmlPrinter.h; sourceTree = "<group>"; };
+		801A0E2619C461840062ECEB /* XUnitPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUnitPrinter.h; sourceTree = "<group>"; };
+		801A0E2719C461840062ECEB /* YesNoRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YesNoRunner.h; sourceTree = "<group>"; };
+		801A0E2919C4618F0062ECEB /* BMMessageTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMMessageTest.h; sourceTree = "<group>"; };
 		80D86CC719C460C500F565AC /* bottlemail */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = bottlemail; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D86CCA19C460C500F565AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,6 +91,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		801A0DFD19C461840062ECEB /* cxxtest */ = {
+			isa = PBXGroup;
+			children = (
+				801A0DFE19C461840062ECEB /* Descriptions.cpp */,
+				801A0DFF19C461840062ECEB /* Descriptions.h */,
+				801A0E0019C461840062ECEB /* DummyDescriptions.cpp */,
+				801A0E0119C461840062ECEB /* DummyDescriptions.h */,
+				801A0E0219C461840062ECEB /* ErrorFormatter.h */,
+				801A0E0319C461840062ECEB /* ErrorPrinter.h */,
+				801A0E0419C461840062ECEB /* Flags.h */,
+				801A0E0519C461840062ECEB /* GlobalFixture.cpp */,
+				801A0E0619C461840062ECEB /* GlobalFixture.h */,
+				801A0E0719C461840062ECEB /* Gui.h */,
+				801A0E0819C461840062ECEB /* LinkedList.cpp */,
+				801A0E0919C461840062ECEB /* LinkedList.h */,
+				801A0E0A19C461840062ECEB /* Mock.h */,
+				801A0E0B19C461840062ECEB /* MSVCErrorPrinter.h */,
+				801A0E0C19C461840062ECEB /* ParenPrinter.h */,
+				801A0E0D19C461840062ECEB /* QtGui.h */,
+				801A0E0E19C461840062ECEB /* RealDescriptions.cpp */,
+				801A0E0F19C461840062ECEB /* RealDescriptions.h */,
+				801A0E1019C461840062ECEB /* Root.cpp */,
+				801A0E1119C461840062ECEB /* SelfTest.h */,
+				801A0E1219C461840062ECEB /* StdHeaders.h */,
+				801A0E1319C461840062ECEB /* StdioFilePrinter.h */,
+				801A0E1419C461840062ECEB /* StdioPrinter.h */,
+				801A0E1519C461840062ECEB /* StdTestSuite.h */,
+				801A0E1619C461840062ECEB /* StdValueTraits.h */,
+				801A0E1719C461840062ECEB /* TeeListener.h */,
+				801A0E1819C461840062ECEB /* TestListener.h */,
+				801A0E1919C461840062ECEB /* TestMain.h */,
+				801A0E1A19C461840062ECEB /* TestRunner.h */,
+				801A0E1B19C461840062ECEB /* TestSuite.cpp */,
+				801A0E1C19C461840062ECEB /* TestSuite.h */,
+				801A0E1D19C461840062ECEB /* TestTracker.cpp */,
+				801A0E1E19C461840062ECEB /* TestTracker.h */,
+				801A0E1F19C461840062ECEB /* unix.h */,
+				801A0E2019C461840062ECEB /* ValueTraits.cpp */,
+				801A0E2119C461840062ECEB /* ValueTraits.h */,
+				801A0E2219C461840062ECEB /* Win32Gui.h */,
+				801A0E2319C461840062ECEB /* X11Gui.h */,
+				801A0E2419C461840062ECEB /* XmlFormatter.h */,
+				801A0E2519C461840062ECEB /* XmlPrinter.h */,
+				801A0E2619C461840062ECEB /* XUnitPrinter.h */,
+				801A0E2719C461840062ECEB /* YesNoRunner.h */,
+			);
+			path = cxxtest;
+			sourceTree = "<group>";
+		};
+		801A0E2819C4618F0062ECEB /* unittest */ = {
+			isa = PBXGroup;
+			children = (
+				801A0E2919C4618F0062ECEB /* BMMessageTest.h */,
+			);
+			path = unittest;
+			sourceTree = "<group>";
+		};
 		80D86CBE19C460C500F565AC = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +167,8 @@
 		80D86CC919C460C500F565AC /* bottlemail */ = {
 			isa = PBXGroup;
 			children = (
+				801A0E2819C4618F0062ECEB /* unittest */,
+				801A0DFD19C461840062ECEB /* cxxtest */,
 				801A0DF319C461240062ECEB /* BMMessage.cpp */,
 				801A0DF419C461240062ECEB /* BMMessage.hpp */,
 				801A0DF519C461240062ECEB /* Buffer.hpp */,

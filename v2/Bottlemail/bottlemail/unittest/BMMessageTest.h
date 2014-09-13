@@ -2,6 +2,7 @@
 
 #include "cxxtest/TestSuite.h"
 #include "BMMessage.hpp"
+#include "Buffer.hpp"
 #include <string.h>
 
 class BMMessageTest : public CxxTest::TestSuite
@@ -10,11 +11,11 @@ class BMMessageTest : public CxxTest::TestSuite
 public:
   void testCreate(void)
   {
-    const uint16_t bufferSize = 64;
-    uint8_t buffer [bufferSize] = {'a', 6, 'H', 'e', 'l', 'l', 'o', 0, 0xe4, 0x57};
-    
-    
-    BMMessage msg = BMMessage(buffer, bufferSize);
+    const uint16_t cBufferSize = 64;
+    uint8_t cBuffer[cBufferSize] = {'a', 6, 'H', 'e', 'l', 'l', 'o', 0, 0xe4, 0x57};
+
+    Buffer buffer(cBuffer, cBufferSize);
+    BMMessage msg = BMMessage(buffer);
     
     // Check if buffer is read correctly
     TS_ASSERT_EQUALS(msg.getCmd(), 'a');
@@ -27,11 +28,13 @@ public:
   
   void testCRC(void)
   {
-    const uint16_t bufferSize = 64;
-    uint8_t buffer [bufferSize] = {'a', 6, 'H', 'e', 'l', 'l', 'o', 0, 0xe4, 0x57};
+    const uint16_t cBufferSize = 64;
+    uint8_t cBuffer[cBufferSize] = {'a', 6, 'H', 'e', 'l', 'l', 'o', 0, 0xe4, 0x57};
+    
+    Buffer buffer(cBuffer, cBufferSize);
+    BMMessage msg = BMMessage(buffer);
     
     // Comput and check intital crc
-    BMMessage msg = BMMessage(buffer, bufferSize);
     TS_ASSERT_EQUALS(msg.getCRC(), 0xe457);
     TS_ASSERT_EQUALS(msg.computeCRC(), 0xe457);
     TS_ASSERT_EQUALS(msg.isCRCValid(), true);
@@ -56,10 +59,12 @@ public:
   
   void testCRCWithoutPayload(void)
   {
-    const uint16_t bufferSize = 4;
-    uint8_t buffer [bufferSize] = {'a', 0, 0x25, 0x14};
+    const uint16_t cBufferSize = 4;
+    uint8_t cBuffer[cBufferSize] = {'a', 0, 0x25, 0x14};
     
-    BMMessage msg = BMMessage(buffer, bufferSize);
+    Buffer buffer(&cBuffer, cBufferSize);
+    BMMessage msg = BMMessage(buffer);
+    
     TS_ASSERT_EQUALS(msg.getCRC(), 0x2514)
     TS_ASSERT_EQUALS(msg.computeCRC(), 0x2514)
     TS_ASSERT_EQUALS(msg.isCRCValid(), true);
@@ -67,32 +72,39 @@ public:
   
   void testPayloadSmallBuffer(void)
   {
-    const uint16_t bufferSize = 4;
-    uint8_t buffer [bufferSize] = {'a', 0, 0xe4, 0x57};
+    const uint16_t cBufferSize = 4;
+    uint8_t cBuffer[cBufferSize] = {'a', 0, 0xe4, 0x57};
+    
+    Buffer buffer(&cBuffer, cBufferSize);
+    BMMessage msg = BMMessage(buffer);
    
     // Check if we can add an byte
-    BMMessage msg = BMMessage(buffer, bufferSize);
-    TS_ASSERT(msg.writePayload(buffer, 1) != 0);
+    TS_ASSERT(msg.writePayload(cBuffer, 1) != 0);
     TS_ASSERT(msg.appendPayload('a') != 0);
   }
   
   void testPayloadInvalidSize(void)
   {
-    const uint16_t bufferSize = 4;
-    uint8_t buffer [bufferSize] = {'a', 1, 0xe4, 0x57};
+    const uint16_t cBufferSize = 4;
+    uint8_t cBuffer[cBufferSize] = {'a', 1, 0xe4, 0x57};
+    
+    Buffer buffer(&cBuffer, cBufferSize);
+    BMMessage msg = BMMessage(buffer);
     
     // Check if we can add an byte
-    BMMessage msg = BMMessage(buffer, bufferSize);
-    TS_ASSERT(msg.writePayload(buffer, 1) != 0);
+    TS_ASSERT(msg.writePayload(cBuffer, 1) != 0);
     TS_ASSERT(msg.appendPayload('a') != 0);
   }
   
   void testPayload(void)
   {
-    const uint16_t bufferSize = 10;
-    uint8_t buffer [bufferSize] = {'a', 6, 'H', 'e', 'l', 'l', 'o', 0, 0xe4, 0x57};
+    const uint16_t cBufferSize = 10;
+    uint8_t cBuffer[cBufferSize] = {'a', 6, 'H', 'e', 'l', 'l', 'o', 0, 0xe4, 0x57};
     
-    BMMessage msg = BMMessage(buffer, bufferSize);
+    Buffer buffer(&cBuffer, cBufferSize);
+    BMMessage msg = BMMessage(buffer);
+    
+    // Write payload
     msg.writePayload((uint8_t*)"Hi", 3);
     
     // Check the new payload
