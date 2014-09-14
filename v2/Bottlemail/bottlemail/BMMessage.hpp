@@ -3,20 +3,21 @@
 
 #include "Buffer.hpp"
 
-/*
- * The assumed package format is:
+/**
+ * @class BMMessage
+ * Class to handle a buffer that contains a Bottl(e)mail message.
+ *
+ * The assumed package format of the buffer is:
  * <cmd(1), len(1), payload(len), crc(2)>
  */
-
-typedef struct
-{
-  uint8_t cmd;
-  uint8_t payloadSize;
-}BMMessageHeader;
-
 class BMMessage
 {
 public:
+  
+  /**
+   * Initialize the message by operating on the given buffer.
+   * @param buffer The buffer the operations operate on.
+   */
   BMMessage(Buffer &buffer);
 
   /**
@@ -29,6 +30,8 @@ public:
    */
   void setCmd(uint8_t cmd);
 
+//--------------------------------------------------------------------------------------------------------------------//
+#pragma mark - Payload
   /**
    * Returns a pointer to the payload. @see getPayloadSize() or @see getPayloadBuffer()
    */
@@ -57,7 +60,9 @@ public:
    * @return 0 = success, -1 insufficient size
    */
   int appendPayload(unsigned char byte);
-  
+
+//--------------------------------------------------------------------------------------------------------------------//
+#pragma mark - CRC
   /**
    *  Returns the checksum
    */
@@ -83,7 +88,9 @@ public:
    * @return true = valid, false = invalid.
    */
   bool isCRCValid();
-  
+
+//--------------------------------------------------------------------------------------------------------------------//
+#pragma mark - Size
   /**
    * Returns the overall size in bytes of the message including the bytes needed by the checksum.
    */

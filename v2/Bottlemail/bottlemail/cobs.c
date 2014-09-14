@@ -1,62 +1,69 @@
-/*
- * StuffData byte stuffs "length" bytes of
- * data at the location pointed to by "ptr",
- * writing the output to the location pointed
- * to by "dst".
- */
+#include <stdlib.h>
 
-#define NULL 0
-
+// Write down the code, adjust the code ptr and set a new code.
 #define FinishBlock(X) (*code_ptr = (X), code_ptr = dst++, code = 0x01)
 
-void cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *dst)
+void cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *dst, unsigned long size)
 {
-  if (ptr == NULL || dst == NULL)
+  if (ptr == NULL || dst == NULL || length + 1 > size)
     return;
-	
-  const unsigned char *end = ptr + length;
-  unsigned char *code_ptr = dst++;
-  unsigned char code = 0x01;
   
+  // The code and code pointer to define the amount of following characters
+  unsigned char code = 0x01;
+  unsigned char *code_ptr = dst++;
+
+  // Blockwise stuff bytes to the destination
+  const unsigned char *end = ptr + length;
   while (ptr < end)
   {
+    // If we detect a zero byte, finish the current code.
     if (*ptr == 0)
       FinishBlock(code);
+    
+    // Otherwise process this byte.
     else
     {
+      // Copy the byte and track the count (code)
       *dst++ = *ptr;
       code++;
+      
+      // If we reach the maximum byte count (overflow), write down the code
       if (code == 0xFF)
         FinishBlock(code);
     }
+    
+    // Take next byte
     ptr++;
   }
-  
+ 
+  // Write down last block.
   FinishBlock(code);
 }
 
-/*
- * UnStuffData decodes "length" bytes of
- * data at the location pointed to by "ptr",
- * writing the output to the location pointed
- * to by "dst".
- */
-int cobsDecode(const unsigned char *ptr, unsigned long length, unsigned char *dst)
+int cobsDecode(const unsigned char *ptr, unsigned long length, unsigned char *dst, unsigned long size)
 {
-  if (ptr == NULL || dst == NULL)
+  
+  // Checks
+  if (ptr == NULL || dst == NULL || !length || !size)
     return 0;
+  else if (length-1 > size)
+    return -1;
 	
-  const unsigned char *ptrEnd = ptr + length;
-  while (ptr < ptrEnd)
+  // Blockwise unstuff bytes to the destination
+  const unsigned char *end = ptr + length;
+  while (ptr < end)
   {
+    // Read and check the first byte of this block to determine the length of this block.
     int code = *ptr;
-    if (ptr + code -1 > ptrEnd)
+    if (ptr + code-1 > end)
       return -1;
     
+    // Copy the payload bytes of this block to the destination.
     ptr++;
     for (int i=1; i<code; i++)
       *dst++ = *ptr++;
     
+    // If the code is not UCHAR_MAX, we know that a zero have to be writte after the unstuffed bytes.
     if (code < 0xFF)
       *dst++ = 0;
   }

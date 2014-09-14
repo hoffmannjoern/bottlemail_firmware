@@ -11,9 +11,14 @@
 #include "Buffer.hpp"
 
 template <uint16_t SIZE>
+
+/**
+ * Struct to manage n amount of bytes defined by a template parameter
+ */
 struct StaticBuffer : Buffer
 {
   unsigned char buffer[SIZE];
+
   StaticBuffer() : Buffer(buffer, SIZE)
   {}
 };

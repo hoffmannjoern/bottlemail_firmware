@@ -11,8 +11,15 @@
 #include "Buffer.hpp"
 #include <stdlib.h>
 
+/**
+ * Struct to manage an amount of bytes that is allocated on the heap.
+ */
 struct DynamicBuffer : Buffer
 {
+  /**
+   * Creates an manages a memory region on the heap more safely.
+   * @param aSize The size of the allocated memory region.
+   */
   DynamicBuffer(uint16_t aSize) : Buffer(malloc(aSize), aSize)
   { }
   

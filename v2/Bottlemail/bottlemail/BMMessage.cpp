@@ -3,10 +3,18 @@
 #include <stdint.h>
 #include <string.h>
 
-const uint8_t HEADER_SIZE = sizeof(BMMessageHeader);
-const uint8_t OVERHEAD_SIZE = HEADER_SIZE + sizeof(uint16_t);
+typedef struct
+{
+  uint8_t cmd;
+  uint8_t payloadSize;
+}BMMessageHeader;
+
 #define HEADER(ptr) ((BMMessageHeader*)ptr)
 
+const uint8_t HEADER_SIZE  = sizeof(BMMessageHeader);
+const uint8_t OVERHEAD_SIZE = HEADER_SIZE + sizeof(uint16_t);
+
+// ------------------------------------------------------------------------------------------------------------------ //
 BMMessage::BMMessage(Buffer &buffer) : _buffer(buffer)
 {
   // Set the max payload size in contructor due to not compute the bounds later
@@ -29,6 +37,9 @@ void BMMessage::setCmd(uint8_t cmd)
   if (_buffer.size >= HEADER_SIZE)
     HEADER(_buffer.bytes)->cmd = cmd;
 }
+
+//--------------------------------------------------------------------------------------------------------------------//
+#pragma mark - Payload
 
 void* BMMessage::getPayload()
 {
@@ -72,6 +83,8 @@ int BMMessage::appendPayload(unsigned char byte)
   return 0;
 }
 
+//--------------------------------------------------------------------------------------------------------------------//
+#pragma mark - CRC
 uint16_t BMMessage::getCRC()
 {
   // Get the crc value that is behind the payload
@@ -103,6 +116,9 @@ bool BMMessage::isCRCValid()
 {
   return getCRC() == computeCRC();
 }
+
+// ------------------------------------------------------------------------------------------------------------------ //
+#pragma mark - Size
 
 uint16_t BMMessage::getSize()
 {

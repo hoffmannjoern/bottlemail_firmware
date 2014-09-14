@@ -10,9 +10,19 @@
 #include <stdint.h>
 #include <string.h>
 
+/**
+ * Struct to manage and access a memory region more safer.
+ */
 struct Buffer
 {
+  /**
+   * The pointer to the memory region.
+   */
   unsigned char *const bytes;
+  
+  /**
+   * The size of the memory region.
+   */
   const uint16_t size;
   
   /**
@@ -21,12 +31,12 @@ struct Buffer
    * @param size The size of the memory region to manage.
    */
   Buffer(void *ptr, uint16_t size) : bytes((unsigned char*)ptr), size(size)
-  {};
+  {}
   
   /**
    * Make a deep copy of the given buffer.
    * \param other The buffer with the managed memory to copy.
-   * @note The count of copied bytes is the minimum of the size.
+   * @note The count of copied bytes is the minimum size, either of the other or this buffer.
    */
   void copy(Buffer &other)
   {
@@ -36,7 +46,11 @@ struct Buffer
   virtual ~Buffer()
   {}
 
-  unsigned char& operator[] (const uint16_t index) {
+  /**
+   * The array access operator to directly manipulate the managed memory region.
+   */
+  unsigned char& operator[] (const uint16_t index)
+  {
     return bytes[index];
   }
 };

@@ -10,6 +10,9 @@
 #define _FillBuffer_hpp
 #include "Buffer.hpp"
 
+/**
+ * Class to manage a buffer that can be filled bytewise.
+ */
 class FillBuffer : public Buffer
 {
   
