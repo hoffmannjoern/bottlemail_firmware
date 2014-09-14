@@ -23,16 +23,16 @@ void cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *d
     // Otherwise process this byte.
     else
     {
-      // Copy the byte and track the count (code)
+      // Copy byte and increment the code (byte count)
       *dst++ = *ptr;
       code++;
       
-      // If we reach the maximum byte count (overflow), write down the code
+      // If we reach the maximum byte count (UCHAR_MAX), write down the code to prevent an overflow.
       if (code == 0xFF)
         FinishBlock(code);
     }
     
-    // Take next byte
+    // Reference next byte
     ptr++;
   }
  
