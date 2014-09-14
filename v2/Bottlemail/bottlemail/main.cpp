@@ -117,7 +117,7 @@ void bufferTest()
 
 void cobsFrameTest()
 {
-  const int cBufferSize = 1000;
+  const int cBufferSize = 128;
   char *cBuffer = (char*) malloc(cBufferSize);
   char *cBufferCmp = (char*) malloc(cBufferSize);
   
