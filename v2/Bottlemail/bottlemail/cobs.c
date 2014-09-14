@@ -47,6 +47,8 @@ int cobs_encode(void *vDst, unsigned long dst_size, const void *vPtr, unsigned l
       // If we reach the maximum byte count (UCHAR_MAX), write down the code to prevent an overflow.
       if (code == 0xFF)
       {
+        // Fixme:
+        // Bug for packages >= 255;
         
         // Save next byte and write down current byte;
         lastByte = *(ptr+1);

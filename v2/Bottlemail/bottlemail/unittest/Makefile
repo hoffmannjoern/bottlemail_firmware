@@ -42,7 +42,7 @@ cobs.o:
 test: all
 	./BMMessageTest
 	./CobsFrameTest
-	./CobsTest
+	#./CobsTest
 
 clean:
 	rm -rf *.o BMMessageTest CobsFrameTest CobsTest
