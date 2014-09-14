@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		801A0DFA19C461240062ECEB /* BMMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 801A0DF319C461240062ECEB /* BMMessage.cpp */; };
-		801A0DFB19C461240062ECEB /* cobs.c in Sources */ = {isa = PBXBuildFile; fileRef = 801A0DF619C461240062ECEB /* cobs.c */; };
 		801A0DFC19C461240062ECEB /* crc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 801A0DF819C461240062ECEB /* crc.cpp */; };
+		801A0E2F19C5A7C40062ECEB /* CobsFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 801A0E2D19C5A7C40062ECEB /* CobsFrame.cpp */; };
+		801A0E3019C5B1430062ECEB /* cobs.c in Sources */ = {isa = PBXBuildFile; fileRef = 801A0DF619C461240062ECEB /* cobs.c */; };
 		80D86CCB19C460C500F565AC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80D86CCA19C460C500F565AC /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,8 @@
 		801A0E2A19C494520062ECEB /* DynamicBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DynamicBuffer.hpp; sourceTree = "<group>"; };
 		801A0E2B19C495300062ECEB /* StaticBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StaticBuffer.hpp; sourceTree = "<group>"; };
 		801A0E2C19C4954C0062ECEB /* FillBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FillBuffer.hpp; sourceTree = "<group>"; };
+		801A0E2D19C5A7C40062ECEB /* CobsFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CobsFrame.cpp; sourceTree = "<group>"; };
+		801A0E2E19C5A7C40062ECEB /* CobsFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CobsFrame.h; sourceTree = "<group>"; };
 		80D86CC719C460C500F565AC /* bottlemail */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = bottlemail; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D86CCA19C460C500F565AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +175,8 @@
 			children = (
 				801A0E2819C4618F0062ECEB /* unittest */,
 				801A0DFD19C461840062ECEB /* cxxtest */,
+				801A0E2E19C5A7C40062ECEB /* CobsFrame.h */,
+				801A0E2D19C5A7C40062ECEB /* CobsFrame.cpp */,
 				801A0DF319C461240062ECEB /* BMMessage.cpp */,
 				801A0DF419C461240062ECEB /* BMMessage.hpp */,
 				801A0DF519C461240062ECEB /* Buffer.hpp */,
@@ -243,10 +248,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				801A0E3019C5B1430062ECEB /* cobs.c in Sources */,
 				801A0DFC19C461240062ECEB /* crc.cpp in Sources */,
 				801A0DFA19C461240062ECEB /* BMMessage.cpp in Sources */,
 				80D86CCB19C460C500F565AC /* main.cpp in Sources */,
-				801A0DFB19C461240062ECEB /* cobs.c in Sources */,
+				801A0E2F19C5A7C40062ECEB /* CobsFrame.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

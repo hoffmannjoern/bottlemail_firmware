@@ -1,12 +1,15 @@
 #include <stdlib.h>
+#include <stdint.h>
 
 // Write down the code, adjust the code ptr and set a new code.
 #define FinishBlock(X) (*code_ptr = (X), code_ptr = dst++, code = 0x01)
 
-void cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *dst, unsigned long size)
+int cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *dst, unsigned long size)
 {
-  if (ptr == NULL || dst == NULL || length + 1 > size)
-    return;
+  if (!length)
+    return 1;
+  else if (ptr == NULL || dst == NULL || (length+1 > size))
+    return 0;
   
   // The code and code pointer to define the amount of following characters
   unsigned char code = 0x01;
@@ -38,16 +41,16 @@ void cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *d
  
   // Write down last block.
   FinishBlock(code);
+  return 1;
 }
 
 int cobsDecode(const unsigned char *ptr, unsigned long length, unsigned char *dst, unsigned long size)
 {
-  if (ptr == NULL || dst == NULL || !length || !size)
+  if (!length)
+    return 1;
+  else if (ptr == NULL || dst == NULL || (length-1 > size))
     return 0;
   
-  else if (length-1 > size)
-    return -1;
-	
   // Blockwise unstuff bytes to the destination
   const unsigned char *end = ptr + length;
   while (ptr < end)
@@ -55,7 +58,7 @@ int cobsDecode(const unsigned char *ptr, unsigned long length, unsigned char *ds
     // Read and check the first byte of this block to determine the length of this block.
     unsigned char code = *ptr;
     if (ptr + code-1 > end)
-      return -1;
+      return 0;
     
     // Copy the payload bytes of this block to the destination.
     ptr++;
@@ -67,5 +70,5 @@ int cobsDecode(const unsigned char *ptr, unsigned long length, unsigned char *ds
       *dst++ = 0;
   }
   
-  return 0;
+  return 1;
 }

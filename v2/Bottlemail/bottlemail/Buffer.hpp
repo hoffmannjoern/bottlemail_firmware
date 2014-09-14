@@ -43,6 +43,19 @@ struct Buffer
     memcpy(bytes, other.bytes, size < other.size ? size : other.size);
   }
   
+  /**
+   * Checks if the buffer is valid
+   * @note A buffer if only valid if it has a non zero size and a non zero byte ptr.
+   * @return Returns true if valid, false otherwise.
+   */
+  bool isValid()
+  {
+    if (size != 0 && bytes != nullptr)
+      return true;
+      
+    return false;
+  }
+  
   virtual ~Buffer()
   {}
 
