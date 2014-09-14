@@ -4,11 +4,15 @@
 // Write down the code, adjust the code ptr and set a new code.
 #define FinishBlock(X) (*code_ptr = (X), code_ptr = dst++, code = 0x01)
 
-int cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *dst, unsigned long size)
+int cobs_encode(void *vDst, unsigned long dst_size, const void *vPtr, unsigned long length)
 {
+  const unsigned char *ptr = vPtr;
+  unsigned char *dst = vDst;
+  
   if (!length)
     return 1;
-  else if (ptr == NULL || dst == NULL || (length+1 > size))
+  
+  else if (ptr == NULL || dst == NULL || (length+1 > dst_size))
     return 0;
   
   // The code and code pointer to define the amount of following characters
@@ -42,7 +46,17 @@ int cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *ds
       
       // If we reach the maximum byte count (UCHAR_MAX), write down the code to prevent an overflow.
       if (code == 0xFF)
+      {
+        
+        // Save next byte and write down current byte;
+        lastByte = *(ptr+1);
+        *dst++ = byte;
         FinishBlock(code);
+        
+        if (lastByte == 0) {
+          FinishBlock(code);
+        }
+      }
     }
     
     // Reference next byte
@@ -51,18 +65,21 @@ int cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *ds
   
   if (lastByte)
     *dst++ = lastByte;
- 
+  
   // Write down last block.
   FinishBlock(code);
   return 1;
 }
 
-int cobsDecode(const unsigned char *ptr, unsigned long length, unsigned char *dst, unsigned long size)
+int cobs_decode(void *vDst, unsigned long dst_size, const void *vPtr, unsigned long length)
 {
+  const unsigned char *ptr = vPtr;
+  unsigned char *dst = vDst;
+  
   if (!length)
     return 1;
   
-  else if (ptr == NULL || dst == NULL || (length > size))
+  else if (ptr == NULL || dst == NULL || (length > dst_size))
     return 0;
   
   // Blockwise unstuff bytes to the destination

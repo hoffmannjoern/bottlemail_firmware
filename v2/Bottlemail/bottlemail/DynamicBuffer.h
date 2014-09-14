@@ -8,7 +8,7 @@
 
 #ifndef _DynamicBuffer_hpp
 #define _DynamicBuffer_hpp
-#include "Buffer.hpp"
+#include "Buffer.h"
 #include <stdlib.h>
 
 /**

@@ -1,8 +1,8 @@
 // MyTestSuite1.h
 
 #include "cxxtest/TestSuite.h"
-#include "BMMessage.hpp"
-#include "Buffer.hpp"
+#include "BMMessage.h"
+#include "Buffer.h"
 #include <string.h>
 
 class BMMessageTest : public CxxTest::TestSuite

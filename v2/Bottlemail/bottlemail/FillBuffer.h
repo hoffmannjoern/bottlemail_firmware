@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Jörn Hoffmann. All rights reserved.
 //
 
-#ifndef _FillBuffer_hpp
-#define _FillBuffer_hpp
-#include "Buffer.hpp"
+#ifndef _FillBuffer_h_
+#define _FillBuffer_h_
+#include "Buffer.h"
 
 /**
  * Class to manage a buffer that can be filled bytewise.

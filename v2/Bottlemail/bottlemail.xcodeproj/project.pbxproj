@@ -10,7 +10,7 @@
 		801A0DFA19C461240062ECEB /* BMMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 801A0DF319C461240062ECEB /* BMMessage.cpp */; };
 		801A0DFC19C461240062ECEB /* crc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 801A0DF819C461240062ECEB /* crc.cpp */; };
 		801A0E2F19C5A7C40062ECEB /* CobsFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 801A0E2D19C5A7C40062ECEB /* CobsFrame.cpp */; };
-		801A0E3019C5B1430062ECEB /* cobs.c in Sources */ = {isa = PBXBuildFile; fileRef = 801A0DF619C461240062ECEB /* cobs.c */; };
+		801A0E3719C6206B0062ECEB /* cobs.c in Sources */ = {isa = PBXBuildFile; fileRef = 801A0E3619C6206B0062ECEB /* cobs.c */; };
 		80D86CCB19C460C500F565AC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80D86CCA19C460C500F565AC /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -28,12 +28,10 @@
 
 /* Begin PBXFileReference section */
 		801A0DF319C461240062ECEB /* BMMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BMMessage.cpp; sourceTree = "<group>"; };
-		801A0DF419C461240062ECEB /* BMMessage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BMMessage.hpp; sourceTree = "<group>"; };
-		801A0DF519C461240062ECEB /* Buffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Buffer.hpp; sourceTree = "<group>"; };
-		801A0DF619C461240062ECEB /* cobs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cobs.c; sourceTree = "<group>"; };
-		801A0DF719C461240062ECEB /* cobs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cobs.h; sourceTree = "<group>"; };
+		801A0DF419C461240062ECEB /* BMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMMessage.h; sourceTree = "<group>"; };
+		801A0DF519C461240062ECEB /* Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Buffer.h; sourceTree = "<group>"; };
 		801A0DF819C461240062ECEB /* crc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crc.cpp; sourceTree = "<group>"; };
-		801A0DF919C461240062ECEB /* crc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = crc.hpp; sourceTree = "<group>"; };
+		801A0DF919C461240062ECEB /* crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc.h; sourceTree = "<group>"; };
 		801A0DFE19C461840062ECEB /* Descriptions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Descriptions.cpp; sourceTree = "<group>"; };
 		801A0DFF19C461840062ECEB /* Descriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Descriptions.h; sourceTree = "<group>"; };
 		801A0E0019C461840062ECEB /* DummyDescriptions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DummyDescriptions.cpp; sourceTree = "<group>"; };
@@ -77,12 +75,15 @@
 		801A0E2619C461840062ECEB /* XUnitPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUnitPrinter.h; sourceTree = "<group>"; };
 		801A0E2719C461840062ECEB /* YesNoRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YesNoRunner.h; sourceTree = "<group>"; };
 		801A0E2919C4618F0062ECEB /* BMMessageTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMMessageTest.h; sourceTree = "<group>"; };
-		801A0E2A19C494520062ECEB /* DynamicBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DynamicBuffer.hpp; sourceTree = "<group>"; };
-		801A0E2B19C495300062ECEB /* StaticBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StaticBuffer.hpp; sourceTree = "<group>"; };
-		801A0E2C19C4954C0062ECEB /* FillBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FillBuffer.hpp; sourceTree = "<group>"; };
+		801A0E2A19C494520062ECEB /* DynamicBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicBuffer.h; sourceTree = "<group>"; };
+		801A0E2B19C495300062ECEB /* StaticBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticBuffer.h; sourceTree = "<group>"; };
+		801A0E2C19C4954C0062ECEB /* FillBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FillBuffer.h; sourceTree = "<group>"; };
 		801A0E2D19C5A7C40062ECEB /* CobsFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CobsFrame.cpp; sourceTree = "<group>"; };
 		801A0E2E19C5A7C40062ECEB /* CobsFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CobsFrame.h; sourceTree = "<group>"; };
 		801A0E3119C5C1830062ECEB /* CobsFrameTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CobsFrameTest.h; sourceTree = "<group>"; };
+		801A0E3219C5FBE20062ECEB /* CobsTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CobsTest.h; sourceTree = "<group>"; };
+		801A0E3619C6206B0062ECEB /* cobs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cobs.c; sourceTree = "<group>"; };
+		801A0E3819C620720062ECEB /* cobs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cobs.h; sourceTree = "<group>"; };
 		80D86CC719C460C500F565AC /* bottlemail */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = bottlemail; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D86CCA19C460C500F565AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +151,7 @@
 		801A0E2819C4618F0062ECEB /* unittest */ = {
 			isa = PBXGroup;
 			children = (
+				801A0E3219C5FBE20062ECEB /* CobsTest.h */,
 				801A0E3119C5C1830062ECEB /* CobsFrameTest.h */,
 				801A0E2919C4618F0062ECEB /* BMMessageTest.h */,
 			);
@@ -177,18 +179,18 @@
 			children = (
 				801A0E2819C4618F0062ECEB /* unittest */,
 				801A0DFD19C461840062ECEB /* cxxtest */,
+				801A0E3819C620720062ECEB /* cobs.h */,
+				801A0E3619C6206B0062ECEB /* cobs.c */,
 				801A0E2E19C5A7C40062ECEB /* CobsFrame.h */,
 				801A0E2D19C5A7C40062ECEB /* CobsFrame.cpp */,
-				801A0DF419C461240062ECEB /* BMMessage.hpp */,
+				801A0DF419C461240062ECEB /* BMMessage.h */,
 				801A0DF319C461240062ECEB /* BMMessage.cpp */,
-				801A0DF519C461240062ECEB /* Buffer.hpp */,
-				801A0E2C19C4954C0062ECEB /* FillBuffer.hpp */,
-				801A0E2B19C495300062ECEB /* StaticBuffer.hpp */,
-				801A0E2A19C494520062ECEB /* DynamicBuffer.hpp */,
-				801A0DF619C461240062ECEB /* cobs.c */,
-				801A0DF719C461240062ECEB /* cobs.h */,
+				801A0DF519C461240062ECEB /* Buffer.h */,
+				801A0E2C19C4954C0062ECEB /* FillBuffer.h */,
+				801A0E2B19C495300062ECEB /* StaticBuffer.h */,
+				801A0E2A19C494520062ECEB /* DynamicBuffer.h */,
+				801A0DF919C461240062ECEB /* crc.h */,
 				801A0DF819C461240062ECEB /* crc.cpp */,
-				801A0DF919C461240062ECEB /* crc.hpp */,
 				80D86CCA19C460C500F565AC /* main.cpp */,
 			);
 			path = bottlemail;
@@ -250,7 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				801A0E3019C5B1430062ECEB /* cobs.c in Sources */,
+				801A0E3719C6206B0062ECEB /* cobs.c in Sources */,
 				801A0DFC19C461240062ECEB /* crc.cpp in Sources */,
 				801A0DFA19C461240062ECEB /* BMMessage.cpp in Sources */,
 				80D86CCB19C460C500F565AC /* main.cpp in Sources */,

@@ -1,11 +1,11 @@
 #include <iostream>
-#include "crc.hpp"
+#include "crc.h"
 
-#include "BMMessage.hpp"
-#include "Buffer.hpp"
-#include "StaticBuffer.hpp"
-#include "DynamicBuffer.hpp"
-#include "FillBuffer.hpp"
+#include "BMMessage.h"
+#include "Buffer.h"
+#include "StaticBuffer.h"
+#include "DynamicBuffer.h"
+#include "FillBuffer.h"
 #include "CobsFrame.h"
 
 using namespace std;

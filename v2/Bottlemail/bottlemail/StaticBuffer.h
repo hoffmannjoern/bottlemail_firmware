@@ -8,7 +8,7 @@
 
 #ifndef _StaticBuffer_hpp
 #define _StaticBuffer_hpp
-#include "Buffer.hpp"
+#include "Buffer.h"
 
 template <uint16_t SIZE>
 

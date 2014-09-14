@@ -2,7 +2,7 @@
 
 #include "cxxtest/TestSuite.h"
 #include "CobsFrame.h"
-#include "Buffer.hpp"
+#include "Buffer.h"
 #include <string.h>
 
 class CobsFrameTest : public CxxTest::TestSuite
@@ -42,6 +42,9 @@ public:
     TS_ASSERT_EQUALS(frame.getLength(), payloadLength+1);
     TS_ASSERT_EQUALS(frame.isEncoded(), true);
     TS_ASSERT_EQUALS(memcmp(cBuffer, cBufferEncoded, sizeof(cBufferEncoded)), 0);
+    printf("Buffer Encoded: %s", cBuffer);
+    return;
+  
     
     // Check decode
     ret = frame.decode();

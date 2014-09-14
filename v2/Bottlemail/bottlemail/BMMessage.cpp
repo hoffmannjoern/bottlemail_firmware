@@ -1,5 +1,5 @@
-#include "BMMessage.hpp"
-#include "crc.hpp"
+#include "BMMessage.h"
+#include "crc.h"
 #include <stdint.h>
 #include <string.h>
 

@@ -17,6 +17,12 @@ BMMessageTest.cpp: BMMessageTest.h
 BMMessage.o:
 	$(GC) $(CFLAGS) -I$(CXX_INCLUDE) ../BMMessage.cpp 
 
+#CobsTest: CobsTest.cp
+#	$(GC) -o CobsTest -I$(CXX_INCLUDE) CobsTest.cpp cobs.o
+
+#CobsTest.cpp: CobsTest.h
+#	$(CXX_TESTGEN) --error-printer -o CobsTest.cpp CobsTest.h
+
 CobsFrameTest: CobsFrameTest.cpp cobs.o CobsFrame.o
 	$(GC) -o CobsFrameTest -I$(CXX_INCLUDE) CobsFrameTest.cpp cobs.o CobsFrame.o
 
@@ -36,9 +42,10 @@ cobs.o:
 test: all
 	./BMMessageTest
 	./CobsFrameTest
+	./CobsTest
 
 clean:
-	rm -rf *.o BMMessageTest CobsFrameTest
+	rm -rf *.o BMMessageTest CobsFrameTest CobsTest
 	rm -rf *.cpp
 
 

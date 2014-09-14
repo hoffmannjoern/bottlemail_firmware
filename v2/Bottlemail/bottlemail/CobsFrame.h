@@ -9,7 +9,7 @@
 #ifndef __bottlemail__CobsFrame__
 #define __bottlemail__CobsFrame__
 
-#include "Buffer.hpp"
+#include "Buffer.h"
 #include <stdint.h>
 
 

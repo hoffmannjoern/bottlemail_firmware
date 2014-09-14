@@ -1,7 +1,7 @@
 #ifndef __BMMessage_hpp__
 #define __BMMessage_hpp__
 
-#include "Buffer.hpp"
+#include "Buffer.h"
 
 /**
  * @class BMMessage
