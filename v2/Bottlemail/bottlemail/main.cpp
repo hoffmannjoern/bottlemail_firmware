@@ -117,21 +117,30 @@ void bufferTest()
 
 void cobsFrameTest()
 {
-  const int cBufferSize    = 10;
-  uint8_t cBuffer[10]      = {0x61, 0x62, 0x63, 0x00, 0x64, 0x65, 'n', 'n', 'n'};
-  uint8_t cBufferEncoded[] = {0x04, 0x61, 0x62, 0x63, 0x03, 0x64, 0x65};
+  const int cBufferSize = 1000;
+  char *cBuffer = (char*) malloc(cBufferSize);
+  char *cBufferCmp = (char*) malloc(cBufferSize);
+  
+  for (int i=0; i<cBufferSize; i++)
+  {
+    char c = i+1;
+    
+    cBuffer[i] = c;
+    cBufferCmp[i] = c;
+  }
   
   Buffer buffer(cBuffer, cBufferSize);
-  CobsFrame frame(buffer, 6, false);
-  printf("frame: %s\n", cBuffer);
+  CobsFrame frame(buffer, cBufferSize-1, false);
+  printf("Original Buffer: %s\n", cBuffer);
   
   // Check encode
   bool ret = frame.encode();
   printf("length: %lu\n", frame.getLength());
   printf("encoded: %d\n", frame.isEncoded());
+  printf("Encoded Buffer : %s\n", cBuffer);
   
   ret = frame.decode();
-  printf("frame %s\n", cBuffer);
+  printf("Decoded Buffer : %s\n", cBuffer);
 }
 
 int main(int argc, char *argv[])
