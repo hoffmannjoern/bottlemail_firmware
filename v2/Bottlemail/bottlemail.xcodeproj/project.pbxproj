@@ -84,6 +84,10 @@
 		801A0E3219C5FBE20062ECEB /* CobsTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CobsTest.h; sourceTree = "<group>"; };
 		801A0E3619C6206B0062ECEB /* cobs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cobs.c; sourceTree = "<group>"; };
 		801A0E3819C620720062ECEB /* cobs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cobs.h; sourceTree = "<group>"; };
+		801A0E3F19C62A510062ECEB /* cobs_alt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cobs_alt.c; sourceTree = "<group>"; };
+		801A0E4019C62A510062ECEB /* cobs_alt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cobs_alt.h; sourceTree = "<group>"; };
+		801A0E4119C62A510062ECEB /* cobs_alt2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cobs_alt2.c; sourceTree = "<group>"; };
+		801A0E4219C62A510062ECEB /* cobs_alt2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cobs_alt2.h; sourceTree = "<group>"; };
 		80D86CC719C460C500F565AC /* bottlemail */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = bottlemail; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D86CCA19C460C500F565AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +162,17 @@
 			path = unittest;
 			sourceTree = "<group>";
 		};
+		801A0E3E19C62A510062ECEB /* CobsAlternative */ = {
+			isa = PBXGroup;
+			children = (
+				801A0E3F19C62A510062ECEB /* cobs_alt.c */,
+				801A0E4019C62A510062ECEB /* cobs_alt.h */,
+				801A0E4119C62A510062ECEB /* cobs_alt2.c */,
+				801A0E4219C62A510062ECEB /* cobs_alt2.h */,
+			);
+			path = CobsAlternative;
+			sourceTree = "<group>";
+		};
 		80D86CBE19C460C500F565AC = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +192,7 @@
 		80D86CC919C460C500F565AC /* bottlemail */ = {
 			isa = PBXGroup;
 			children = (
+				801A0E3E19C62A510062ECEB /* CobsAlternative */,
 				801A0E2819C4618F0062ECEB /* unittest */,
 				801A0DFD19C461840062ECEB /* cxxtest */,
 				801A0E3819C620720062ECEB /* cobs.h */,

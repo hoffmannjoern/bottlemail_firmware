@@ -1,9 +1,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-// Write down the code, adjust the code ptr and set a new code.
-#define FinishBlock(X) (*code_ptr = (X), code_ptr = dst++, code = 0x01)
-
 int cobs_encode(void *vDst, unsigned long dst_size, const void *vPtr, unsigned long length)
 {
   const unsigned char *ptr = vPtr;
@@ -35,7 +32,11 @@ int cobs_encode(void *vDst, unsigned long dst_size, const void *vPtr, unsigned l
     
     // If we detect a zero byte, finish the current code.
     if (byte == 0)
-      FinishBlock(code);
+    {
+      *code_ptr = code;
+      code_ptr  = dst++;
+      code = 1;
+    }
     
     // Otherwise process this byte.
     else
@@ -53,10 +54,17 @@ int cobs_encode(void *vDst, unsigned long dst_size, const void *vPtr, unsigned l
         // Save next byte and write down current byte;
         lastByte = *(ptr+1);
         *dst++ = byte;
-        FinishBlock(code);
         
-        if (lastByte == 0) {
-          FinishBlock(code);
+        // Finish block
+        *code_ptr = code;
+        code_ptr  = dst++;
+        code = 1;
+        
+        if (lastByte == 0)
+        {
+          *code_ptr = code;
+          code_ptr  = dst++;
+          code = 1;
         }
       }
     }
@@ -68,8 +76,9 @@ int cobs_encode(void *vDst, unsigned long dst_size, const void *vPtr, unsigned l
   if (lastByte)
     *dst++ = lastByte;
   
-  // Write down last block.
-  FinishBlock(code);
+  // Write down last block count.
+  *code_ptr = code;
+  
   return 1;
 }
 
