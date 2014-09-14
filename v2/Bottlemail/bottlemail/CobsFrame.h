@@ -12,13 +12,20 @@
 #include "Buffer.hpp"
 #include <stdint.h>
 
+
+/**
+ * @class CobsFrame
+ * Class to handle a buffer that contains a CobsFrame.
+ */
 class CobsFrame
 {
   
 public:
-
   /**
-   * 
+   * Initializes the class with the given buffer and frame length.
+   * @param buffer The buffer that contains a cobs frame.
+   * @param lentgth The length of the cobs frame.
+   * @param encoded Value to define if the buffer was encoded by cobs or contains pure data.
    */
   CobsFrame(Buffer &buffer, uint16_t length, bool encoded = false) : buffer(buffer), length(length), encoded(encoded)
   {};
@@ -49,8 +56,12 @@ public:
     return encoded;
   }
   
-private:
+  /**
+   * The managed buffer.
+   */
   Buffer &buffer;
+  
+private:
   uint16_t length;
   bool encoded;
 };

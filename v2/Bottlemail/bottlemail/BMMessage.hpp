@@ -101,8 +101,11 @@ public:
    */
   uint16_t getSizeWithoutCRC();
   
-private:
+
+  // The managed buffer
   Buffer  &_buffer;
+  
+private:
   uint8_t  _payloadSizeMax;
 };
 

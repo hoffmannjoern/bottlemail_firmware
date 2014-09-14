@@ -50,7 +50,7 @@ struct Buffer
    */
   bool isValid()
   {
-    if (size != 0 && bytes != nullptr)
+    if (size != 0 && bytes != NULL)
       return true;
       
     return false;

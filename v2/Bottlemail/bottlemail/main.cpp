@@ -6,6 +6,7 @@
 #include "StaticBuffer.hpp"
 #include "DynamicBuffer.hpp"
 #include "FillBuffer.hpp"
+#include "CobsFrame.h"
 
 using namespace std;
 
@@ -63,7 +64,7 @@ void test3(Buffer &buffer)
   printMsg(msg);
 }
 
-int main(int argc, char *argv[])
+void bufferTest()
 {
   const uint16_t bufferSize = 64;
   uint8_t buffer [bufferSize] = {'a', 6, 'H', 'e', 'l', 'l', 'o', 0, 0xe4, 0x57};
@@ -100,16 +101,43 @@ int main(int argc, char *argv[])
   printf("Buffer size %d\n", fillBuffer.size);
   printf("Buffer length %d\n", fillBuffer.getLength());
   printf("Buffer bytes %s\n", fillBuffer.bytes);
-
+  
   /*
-  for (int i = 0; i < 20; i++)
-  {
-    fillBuffer.appendByte('a' + i);
-  }*/
+   for (int i = 0; i < 20; i++)
+   {
+   fillBuffer.appendByte('a' + i);
+   }*/
   
   fillBuffer.appendByte('z');
   fillBuffer.appendByte(0);
   fillBuffer.appendByte(0);
   printf("Buffer length %d\n", fillBuffer.getLength());
   printf("Buffer bytes : %s\n", fillBuffer.bytes);
+}
+
+void cobsFrameTest()
+{
+  const int cBufferSize    = 10;
+  uint8_t cBuffer[10]      = {0x61, 0x62, 0x63, 0x00, 0x64, 0x65, 'n', 'n', 'n'};
+  uint8_t cBufferEncoded[] = {0x04, 0x61, 0x62, 0x63, 0x03, 0x64, 0x65};
+  
+  Buffer buffer(cBuffer, cBufferSize);
+  CobsFrame frame(buffer, 6, false);
+  printf("frame: %s\n", cBuffer);
+  
+  // Check encode
+  bool ret = frame.encode();
+  printf("length: %lu\n", frame.getLength());
+  printf("encoded: %d\n", frame.isEncoded());
+  
+  ret = frame.decode();
+  printf("frame %s\n", cBuffer);
+}
+
+int main(int argc, char *argv[])
+{
+  // bufferTest();
+  
+  cobsFrameTest();
+  
 }

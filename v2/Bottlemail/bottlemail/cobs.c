@@ -14,20 +14,30 @@ int cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *ds
   // The code and code pointer to define the amount of following characters
   unsigned char code = 0x01;
   unsigned char *code_ptr = dst++;
-
+  unsigned char byte, lastByte = 0;
+  
   // Blockwise stuff bytes to the destination
   const unsigned char *end = ptr + length;
   while (ptr < end)
   {
+    // Read current byte
+    byte = *ptr;
+    
+    // Write the last read byte. Note it can't be 0.
+    if (lastByte) {
+      *dst++ = lastByte;
+      lastByte = 0;
+    }
+    
     // If we detect a zero byte, finish the current code.
-    if (*ptr == 0)
+    if (byte == 0)
       FinishBlock(code);
     
     // Otherwise process this byte.
     else
     {
-      // Copy byte and increment the code (byte count)
-      *dst++ = *ptr;
+      // Save byte and increment the code (byte count)
+      lastByte = byte;
       code++;
       
       // If we reach the maximum byte count (UCHAR_MAX), write down the code to prevent an overflow.
@@ -38,6 +48,9 @@ int cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *ds
     // Reference next byte
     ptr++;
   }
+  
+  if (lastByte)
+    *dst++ = lastByte;
  
   // Write down last block.
   FinishBlock(code);
@@ -48,7 +61,8 @@ int cobsDecode(const unsigned char *ptr, unsigned long length, unsigned char *ds
 {
   if (!length)
     return 1;
-  else if (ptr == NULL || dst == NULL || (length-1 > size))
+  
+  else if (ptr == NULL || dst == NULL || (length > size))
     return 0;
   
   // Blockwise unstuff bytes to the destination

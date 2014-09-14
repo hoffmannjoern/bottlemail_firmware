@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Jörn Hoffmann. All rights reserved.
 //
 
+#include "DynamicBuffer.hpp"
+
 #include "CobsFrame.h"
 extern "C" {
   #include "cobs.h"
@@ -20,6 +22,9 @@ bool CobsFrame::encode()
     return false;
   else if (length+1 > buffer.size)
     return false;
+
+  
+  // DynamicBuffer dybuffer(buffer.size);
   
   // Encode
   bool success = cobsEncode(buffer.bytes, length, buffer.bytes, buffer.size);
