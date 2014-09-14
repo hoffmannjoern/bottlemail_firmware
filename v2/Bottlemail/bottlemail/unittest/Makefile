@@ -11,7 +11,7 @@ all: BMMessageTest CobsFrameTest
 BMMessageTest: BMMessageTest.cpp crc.o BMMessage.o
 	$(GC) -o BMMessageTest -I$(CXX_INCLUDE) BMMessageTest.cpp crc.o BMMessage.o
 
-BMMessageTest.cpp:
+BMMessageTest.cpp: BMMessageTest.h
 	$(CXX_TESTGEN) --error-printer -o BMMessageTest.cpp BMMessageTest.h
 
 BMMessage.o:
@@ -20,7 +20,7 @@ BMMessage.o:
 CobsFrameTest: CobsFrameTest.cpp cobs.o CobsFrame.o
 	$(GC) -o CobsFrameTest -I$(CXX_INCLUDE) CobsFrameTest.cpp cobs.o CobsFrame.o
 
-CobsFrameTest.cpp:
+CobsFrameTest.cpp: CobsFrameTest.h
 	$(CXX_TESTGEN) --error-printer -o CobsFrameTest.cpp CobsFrameTest.h
 
 CobsFrame.o:
