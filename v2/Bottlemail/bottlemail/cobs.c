@@ -42,10 +42,9 @@ void cobsEncode(const unsigned char *ptr, unsigned long length, unsigned char *d
 
 int cobsDecode(const unsigned char *ptr, unsigned long length, unsigned char *dst, unsigned long size)
 {
-  
-  // Checks
   if (ptr == NULL || dst == NULL || !length || !size)
     return 0;
+  
   else if (length-1 > size)
     return -1;
 	
@@ -54,13 +53,13 @@ int cobsDecode(const unsigned char *ptr, unsigned long length, unsigned char *ds
   while (ptr < end)
   {
     // Read and check the first byte of this block to determine the length of this block.
-    int code = *ptr;
+    unsigned char code = *ptr;
     if (ptr + code-1 > end)
       return -1;
     
     // Copy the payload bytes of this block to the destination.
     ptr++;
-    for (int i=1; i<code; i++)
+    for (unsigned char i=1; i<code; i++)
       *dst++ = *ptr++;
     
     // If the code is not UCHAR_MAX, we know that a zero have to be writte after the unstuffed bytes.
