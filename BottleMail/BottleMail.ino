@@ -7,6 +7,7 @@
 #include <Fat16util.h> // use functions to print strings from flash memory
 
 #include "Frame.h"
+#include "FrameRecognizer.h"
 #include "Message.h"
 #include "MessageHandler.h"
 #include <XModem.h>
@@ -28,7 +29,6 @@ void error_P(const char *str)
     Serial.print(F("SD error: "));
     Serial.println(card.errorCode, HEX);
   }
-  while (1);
 }
 
 /*
@@ -170,14 +170,11 @@ const char filename[] = "00100.TXT";
 XModem modem(recvChar, sendChar, dataHandler);
 
 using namespace BottleMail;
-
-static Frame frame;
 static MessageHandler messageHandler;
+static FrameRecognizer frameRecognizer(messageHandler);
 
 void loop(void)
 {
-  static uint8_t byteIndex = 0;
-  static bool startDetected = false;
   Serial.println();
   Serial.println(F("Type any character to start"));
 
@@ -185,35 +182,10 @@ void loop(void)
   while (!Serial.available())
     ;
 
-  if (Serial.available())
-    c = Serial.read();
-
-  if (c == 'S')
-    startDetected = true;
-
-  if (startDetected)
-  {
-    frame[byteIndex++] = c;
-
-    if (byteIndex >= sizeof(Frame))
-    {
-      byteIndex = 0;
-      startDetected = false;
-
-      Serial.println(F("Frame received."));
-      if (frame.isValid())
-      {
-        Serial.println(F("Valid BottleMail message received."));
-        Message message = frame.getMessage();
-
-        // Handle message
-        messageHandler.handle(message);
-      }
-
-      else
-        Serial.println(F("Invalid BottleMail message received!"));
-    }
-  }
+  c = Serial.read();
+  frameRecognizer.addByte(c);
+  if (frameRecognizer.isProcessing())
+    return;
 
   else if (c == 'l')
   {
@@ -262,9 +234,6 @@ void loop(void)
     file.truncate(file.curPosition());
     file.close();
   }
-
-
-
 }
 
 
