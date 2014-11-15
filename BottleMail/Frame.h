@@ -17,24 +17,46 @@ extern "C" {
 
 namespace BottleMail {
 
-/**
- *  Start of a Bottl(e)Mail message frame.
- */
-const uint8_t SOF = 'S';
-
 class Frame
 {
   public:
+    enum frame_marker_t : uint8_t
+    {
+      SOF   = 'S',  ///< Start of a Bottl(e)Mail message frame.
+    };
+
+  public:
+    /**
+        * Initializes a frame with an empty message
+        */
     Frame() : sof(SOF) {};
 
-    inline void setMessage(Message &message)
+    /**
+        * Initializes the frame with the given message.
+        * @param message The message to be contained in the frame.
+        */
+    Frame(const Message &message) : Frame()
+    {
+      setMessage(message);
+    }
+
+    /**
+        * Sets the frame message.
+        * @note The byte order of the message will be corrected to network order and the checksum is updated when setting a message.
+        * @param message Message to be contained in a BottleMail frame.
+        */
+    inline void setMessage(const Message &message)
     {
       msg.cmd = message.cmd;
       msg.value = HTONS(message.value);
-
       updateChecksum();
     }
 
+    /**
+        * Returns the containing message.
+        * @note Before using the method check with isValid().
+        * @return The message that is contained in the string.
+        */
     inline Message getMessage() const
     {
       Message message;
@@ -44,11 +66,20 @@ class Frame
       return message;
     }
 
+    /**
+        * Returns if the frame and it's containing data is valid.
+        * @return True if the frame data is valid, false otherwise.
+        */
     bool isValid() const
     {
       return sof == SOF && calculateChecksum() == crc8;
     }
 
+    /**
+        * Index operator to access the bytes of the frame from the beginning.
+        * @note No boundary check is made.
+        * @return The underlying byte of this frame. The first byte is the SOF indicator and the last is the checksum.
+        */
     uint8_t &operator[] (const int nIndex)
     {
       return ((uint8_t *) &sof)[nIndex];

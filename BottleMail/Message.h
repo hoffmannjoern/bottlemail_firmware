@@ -11,13 +11,32 @@
 #include "endian.h"
 
 namespace BottleMail {
+
+
+
 class Message
 {
   public:
-    uint8_t cmd;
-    uint16_t value;
+    /**
+        * Supported commands of the bottle mail firmware
+        */
+    enum cmd_t : uint8_t
+    {
+      kCmdNone = 0,
+      kCmdNotSupported = 1,
 
-  private:
+      kCmdAskMessageCount = 'm',
+      kCmdAnswerMessageCount = 'n',
+
+      kCmdReadMessage = 'r',
+      kCmdReadMessageReady,
+
+      kCmdWriteMessage = 'w',
+      kCmdWriteMessageReady,
+    };
+
+    cmd_t cmd;
+    uint16_t value;
 } __attribute__((packed));
 
 }

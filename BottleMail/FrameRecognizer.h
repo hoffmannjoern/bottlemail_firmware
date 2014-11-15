@@ -12,8 +12,7 @@
 #include "Frame.h"
 #include "MessageHandler.h"
 
-namespace BottleMail
-{
+namespace BottleMail {
 class FrameRecognizer
 {
   public:
@@ -27,7 +26,7 @@ class FrameRecognizer
     {
       if (!isProcessing())
       {
-        if (byte == SOF)
+        if (byte == Frame::SOF)
           startProcessing();
       }
 
@@ -57,7 +56,7 @@ class FrameRecognizer
     inline void startProcessing()
     {
       reset();
-      addByteToFrame(SOF);
+      addByteToFrame(Frame::SOF);
     }
 
     inline bool isFrameCompleted() const

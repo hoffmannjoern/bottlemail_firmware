@@ -10,22 +10,37 @@
 #define MESSAGEHANDLER_H_
 
 #include "Message.h"
-
+#include "FrameSender.h"
 namespace BottleMail {
 
 class MessageHandler
 {
   public:
-    void handle(const Message &message) const
+    inline void handle(const Message &message) const
     {
-      if (message.cmd == 'w')
-        Serial.println("Handle w");
+      Message msg;
 
-      else if (message.cmd == 'r')
-        Serial.println("Handle r");
-    }
+      switch (message.cmd)
+      {
+        case Message::kCmdWriteMessage:
+          msg.cmd = Message::kCmdWriteMessageReady;
+          break;
 
+        case Message::kCmdReadMessage :
+          msg.cmd = Message::kCmdReadMessageReady;
+          break;
+
+        case Message::kCmdAskMessageCount :
+          msg.cmd = Message::kCmdAnswerMessageCount;
+          msg.value = 1;
+          break;
+
+        default:
+          msg.cmd = Message::kCmdNotSupported;
+      }
+
+      FrameSender::sendMessage(Serial, msg);
+    };
 };
-
 }
 #endif /* MESSAGEHANDLER_H_ */

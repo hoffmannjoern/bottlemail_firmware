@@ -6,8 +6,10 @@
 #include <Fat16.h>
 #include <Fat16util.h> // use functions to print strings from flash memory
 
+#include "Stream.h"
 #include "Frame.h"
 #include "FrameRecognizer.h"
+#include "FrameSender.h"
 #include "Message.h"
 #include "MessageHandler.h"
 #include <XModem.h>
