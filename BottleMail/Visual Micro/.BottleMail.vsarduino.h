@@ -17,15 +17,7 @@
 extern "C" void __cxa_pure_virtual() {;}
 
 void error_P(const char *str);
-void writeNumber(uint32_t n);
 void setup(void);
-void itoa_buffer(uint16_t number, char *buffer, uint8_t buffer_len);
-int create_file(uint16_t number);
-int recvChar(int msDelay);
-void sendChar(char sym);
-bool readFromFileToBuffer(unsigned long &no, char *data);
-bool writeFromBufferToFile(unsigned long &no, char *data);
-bool dataHandler(unsigned long no, char *data, int size);
 uint8_t receiveByte();
 void loop(void);
 
@@ -34,7 +26,8 @@ void loop(void);
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\BottleMail.ino"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\Command.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\CommandHandler.h"
-#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FileMessage.h"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FileManager.cpp"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FileManager.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\Frame.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FrameRecognizer.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FrameSender.h"
