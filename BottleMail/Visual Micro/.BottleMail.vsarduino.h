@@ -26,15 +26,16 @@ void sendChar(char sym);
 bool readFromFileToBuffer(unsigned long &no, char *data);
 bool writeFromBufferToFile(unsigned long &no, char *data);
 bool dataHandler(unsigned long no, char *data, int size);
+uint8_t receiveByte();
 void loop(void);
 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs\pins_arduino.h" 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino\arduino.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\BottleMail.ino"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\Command.h"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\CommandHandler.h"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FileMessage.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\Frame.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FrameRecognizer.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FrameSender.h"
-#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\Message.h"
-#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\MessageBuilder.h"
-#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\MessageHandler.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\endian.h"

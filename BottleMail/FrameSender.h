@@ -11,7 +11,7 @@
 
 #include <Stream.h>
 #include "Frame.h"
-#include "Message.h"
+#include "Command.h"
 
 namespace BottleMail {
 
@@ -25,9 +25,9 @@ class FrameSender
         stream.write(frame[i]);
     }
 
-    static bool sendMessage(Stream &stream, Message &message)
+    static bool sendCommand(Stream &stream, Command &command)
     {
-      Frame frame(message);
+      Frame frame(command);
       return sendFrame(stream, frame);
     }
 };

@@ -10,14 +10,14 @@
 #define FRAMERECOGNIZER_H_
 
 #include "Frame.h"
-#include "MessageHandler.h"
+#include "CommandHandler.h"
 
 namespace BottleMail {
 class FrameRecognizer
 {
   public:
-    FrameRecognizer(MessageHandler &messageHandler) :
-      messageHandler(messageHandler)
+    FrameRecognizer(CommandHandler &commandHandler) :
+      _commandHandler(commandHandler)
     {
       reset();
     };
@@ -44,12 +44,12 @@ class FrameRecognizer
 
     inline void reset()
     {
-      byteIndex = 0;
+      _byteIndex = 0;
     }
 
     inline bool isProcessing() const
     {
-      return byteIndex > 0;
+      return _byteIndex > 0;
     }
 
   private:
@@ -61,29 +61,29 @@ class FrameRecognizer
 
     inline bool isFrameCompleted() const
     {
-      return byteIndex >= sizeof(Frame);
+      return _byteIndex >= sizeof(Frame);
     }
 
     inline void addByteToFrame(uint8_t byte)
     {
-      if (byteIndex < sizeof(Frame))
-        frame[byteIndex++] = byte;
+      if (_byteIndex < sizeof(Frame))
+        _frame[_byteIndex++] = byte;
     }
 
     inline void processFrame() const
     {
-      if (frame.isValid())
+      if (_frame.isValid())
       {
-        Message message = frame.getMessage();
-        messageHandler.handle(message);
+        Command command = _frame.getCommand();
+        _commandHandler.handle(command);
       }
     }
 
 
   private:
-    Frame frame;
-    uint8_t byteIndex;
-    MessageHandler &messageHandler;
+    Frame _frame;
+    uint8_t _byteIndex;
+    CommandHandler &_commandHandler;
 };
 
 }

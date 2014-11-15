@@ -10,8 +10,8 @@
 #include "Frame.h"
 #include "FrameRecognizer.h"
 #include "FrameSender.h"
-#include "Message.h"
-#include "MessageHandler.h"
+#include "Command.h"
+#include "CommandHandler.h"
 #include <XModem.h>
 
 const uint8_t CHIP_SELECT = SS;  // SD card chip select pin.
@@ -172,24 +172,31 @@ const char filename[] = "00100.TXT";
 XModem modem(recvChar, sendChar, dataHandler);
 
 using namespace BottleMail;
-static MessageHandler messageHandler;
-static FrameRecognizer frameRecognizer(messageHandler);
+static CommandHandler commandHandler;
+static FrameRecognizer frameRecognizer(commandHandler);
+
+uint8_t receiveByte()
+{
+  // Wait until byte is received
+  while (!Serial.available())
+    ;
+
+  return Serial.read();
+}
+
 
 void loop(void)
 {
   Serial.println();
   Serial.println(F("Type any character to start"));
 
-  uint8_t c = 0;
-  while (!Serial.available())
-    ;
+  uint8_t byte = receiveByte();
 
-  c = Serial.read();
-  frameRecognizer.addByte(c);
+  frameRecognizer.addByte(byte);
   if (frameRecognizer.isProcessing())
     return;
 
-  else if (c == 'l')
+  else if (byte == 'l')
   {
     // Show files
     Serial.println(F("Name          Modify Date/Time    Size"));
@@ -197,13 +204,13 @@ void loop(void)
     Serial.println(F("Done"));
   }
 
-  else if (c == 'z')
+  else if (byte == 'z')
   {
     create_file(100);
     Serial.println(F("Done"));
   }
 
-  else if (c == 'r')
+  else if (byte == 'r')
   {
     file.open(filename, O_READ);
     if (!file.isOpen())
@@ -220,7 +227,7 @@ void loop(void)
     file.close();
   }
 
-  else if (c == 'w')
+  else if (byte == 'w')
   {
     file.open(filename, O_CREAT | O_WRITE);
     if (!file.isOpen())
