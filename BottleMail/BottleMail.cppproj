@@ -602,6 +602,12 @@ config.path={runtime.ide.path}/hardware/tools/avr/etc/avrdude.conf
     <Compile Include="endian.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="FileManager.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="FileManager.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Frame.h">
       <SubType>compile</SubType>
     </Compile>
@@ -611,13 +617,10 @@ config.path={runtime.ide.path}/hardware/tools/avr/etc/avrdude.conf
     <Compile Include="FrameSender.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Message.h">
+    <Compile Include="Command.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MessageBuilder.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MessageHandler.h">
+    <Compile Include="CommandHandler.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Visual Micro\.BottleMail.vsarduino.h">
