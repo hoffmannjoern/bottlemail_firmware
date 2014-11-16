@@ -6,34 +6,74 @@
  */
 
 #include "FileManager.h"
-
-// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-// Helper
-// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-void FileManager::itoa_buffer(uint16_t number, char *buffer, uint8_t buffer_len)
-{
-  uint8_t i = 0;
-  do
-  {
-    i++;
-    buffer[buffer_len - i] = number % 10 + '0';
-    number /= 10;
-  }
-  while (number);
-}
+// #include "Command.h"
+// #include "FrameSender.h"
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
 // File I/O
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-bool   FileManager::doWrite;
-Fat16  FileManager::file;
-char   FileManager::filename[10] = "00000.TXT";
+const char *FileManager::getFileName(const uint16_t &filenumber)
+{
+  // Max. file name would be "65535.TXT" + \0 = 10 chars
+  static char name[10];
+  static const char *suffix = ".TXT";
+
+  utoa(filenumber, name, 10);
+  strcat(name, suffix);
+
+  return name;
+}
+
+bool FileManager::isMessageNumberValid(const uint16_t &number)
+{
+  // Number 0 is the configuration file
+  if (number == 0)
+    return false;
+
+  return number <= messageCount + 1;
+}
+
+void FileManager::initialize()
+{
+  messageCount = 1;
+}
+
+bool FileManager::writeMessageCount(const uint16_t &count)
+{
+
+
+}
+
+uint16_t FileManager::readMessageCount()
+{
+  uint16_t count = 0;
+
+  file.open(messageCountFile, O_READ);
+  if (!file.isOpen())
+    return count;
+
+  int16_t readBytes = file.read(&count, sizeof(count));
+  if (readBytes != sizeof(count))
+    count = 0;
+
+  file.close();
+  return count;
+}
+
+
 
 void FileManager::readMessage(const uint16_t &number)
 {
+  if (!isMessageNumberValid(number))
+  {
+  }
+
+  const char *filename = getFileName(number);
+
   file.open(filename, O_READ);
   if (!file.isOpen())
   {
+
     // error ("file.open");
     return;
   }
@@ -48,6 +88,7 @@ void FileManager::readMessage(const uint16_t &number)
 
 void FileManager::writeMessage(const uint16_t &number)
 {
+  const char *filename = getFileName(number);
   file.open(filename, O_CREAT | O_WRITE);
   if (!file.isOpen())
   {
@@ -63,6 +104,7 @@ void FileManager::writeMessage(const uint16_t &number)
   file.close();
 }
 
+/*
 int FileManager::createFile(const uint16_t &number)
 {
   char file_name[] = "00000.txt";
@@ -97,6 +139,7 @@ int FileManager::createFile(const uint16_t &number)
   // close file and force write of all data to the SD card
   file.close();
 }
+*/
 
 bool FileManager::readFromFileToBuffer(unsigned long &no, char *data)
 {
@@ -127,8 +170,6 @@ bool FileManager::writeFromBufferToFile(unsigned long &no, char *data)
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
 // XModem
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-XModem FileManager::modem = XModem(recvChar, sendChar, dataHandler);
-
 void FileManager::sendChar(char sym)
 {
   Serial.write(sym);
@@ -158,3 +199,12 @@ bool FileManager::dataHandler(unsigned long no, char *data, int size)
   else
     return readFromFileToBuffer(no, data);
 }
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+// XModem
+// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+uint16_t    FileManager::messageCount = 1;
+const char *FileManager::messageCountFile = "COUNT.TXT";
+bool     FileManager::doWrite       = false;
+Fat16    FileManager::file;
+XModem   FileManager::modem = XModem(recvChar, sendChar, dataHandler);

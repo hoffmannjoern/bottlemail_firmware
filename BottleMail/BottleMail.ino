@@ -14,6 +14,8 @@
 #include "CommandHandler.h"
 #include <XModem.h>
 
+#include "stdint.h"
+
 const uint8_t CHIP_SELECT = SS;  // SD card chip select pin.
 SdCard card;
 
@@ -61,6 +63,7 @@ uint8_t receiveByte()
 }
 
 
+
 void loop(void)
 {
   Serial.println();
@@ -81,7 +84,9 @@ void loop(void)
   }
 
   else if (byte == 'r')
+  {
     ;
+  }
 
 
   else if (byte == 'w')
