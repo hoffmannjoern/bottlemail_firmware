@@ -16,7 +16,7 @@ class Command
 {
   public:
     /**
-        * Supported commands of the bottle mail firmware
+        * Supported command codes of the bottle mail firmware.
         */
     enum cmd_t : uint8_t
     {
@@ -29,11 +29,23 @@ class Command
 
       // Read
       kCmdReadMessage         = 0x20,
-      kCmdReadMessageReady,
+      kCmdReadMessageAnswer,
 
       // Write
       kCmdWriteMessage        = 0x30,
-      kCmdWriteMessageReady,
+      kCmdWriteMessageAnswer,
+    };
+
+    /**
+        * Error codes that will be returned on commands as the value field.
+        */
+    enum error_t : uint16_t
+    {
+      kErrorNone = 0x00,
+
+      // Message Errors
+      kErrorMessageNumberInvalid = 0x10,
+      kErrorMessageFileNotFound,
     };
 
     /**
@@ -44,7 +56,7 @@ class Command
     Command(cmd_t cmd = kCmdNone, uint16_t value = 0) : cmd(cmd), value(value) {};
 
     /**
-        * The type of the command
+        * The code of the command
         */
     cmd_t cmd;
 

@@ -23,11 +23,11 @@ class CommandHandler
       switch (command.cmd)
       {
         case Command::kCmdWriteMessage:
-          answer.cmd = Command::kCmdWriteMessageReady;
+          answer.cmd = Command::kCmdWriteMessageAnswer;
           break;
 
         case Command::kCmdReadMessage :
-          answer.cmd = Command::kCmdReadMessageReady;
+          answer.cmd = Command::kCmdReadMessageAnswer;
           break;
 
         case Command::kCmdMessageCountAsk :

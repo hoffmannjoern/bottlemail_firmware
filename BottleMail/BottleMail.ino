@@ -1,11 +1,5 @@
-/*
- * This sketch reads and prints the file
- * PRINT00.TXT created by fat16print.ino or
- * WRITE00.TXT created by fat16write.ino
- */
-#include <Fat16.h>
-#include <Fat16util.h> // use functions to print strings from flash memory
-
+#include "Fat16.h"
+#include "Fat16util.h"
 
 #include "Command.h"
 #include "CommandHandler.h"
@@ -14,9 +8,15 @@
 #include "FrameSender.h"
 #include "FileManager.h"
 
-const uint8_t CHIP_SELECT = SS;  // SD card chip select pin.
-SdCard card;
+using namespace BottleMail;
 
+static SdCard card;
+static CommandHandler commandHandler;
+static FrameRecognizer frameRecognizer(commandHandler);
+const uint8_t CHIP_SELECT = SS;  // SD card chip select pin.
+
+
+// TODO: refactor to file handler
 // store error strings in flash to save RAM
 #define error(s) error_P(PSTR(s))
 
@@ -31,7 +31,6 @@ void error_P(const char *str)
   }
 }
 
-
 void setup(void)
 {
   Serial.begin(38400);
@@ -43,13 +42,9 @@ void setup(void)
   // Initialize a FAT16 volume
   if (!Fat16::init(&card))
     error("Fat16::init");
+
+  FileManager::initialize();
 }
-
-
-
-using namespace BottleMail;
-static CommandHandler commandHandler;
-static FrameRecognizer frameRecognizer(commandHandler);
 
 uint8_t receiveByte()
 {
@@ -59,7 +54,6 @@ uint8_t receiveByte()
 
   return Serial.read();
 }
-
 
 
 void loop(void)
@@ -83,13 +77,22 @@ void loop(void)
 
   else if (byte == 'r')
   {
-    FileManager::initialize();
-    Serial.println(FileManager::getMessageCount());
+    FileManager::error_t err;
+    err = FileManager::readMessage(2);
+    Serial.println(err);
   }
 
-
   else if (byte == 'w')
-    ;
+  {
+    FileManager::error_t err;
+    err = FileManager::writeMessage(2);
+    Serial.println(err);
+  }
+
+  else if (byte == 'm')
+  {
+    Serial.println(FileManager::getMessageCount());
+  }
 
 }
 

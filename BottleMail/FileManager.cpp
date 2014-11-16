@@ -6,8 +6,9 @@
  */
 
 #include "FileManager.h"
-// #include "Command.h"
-// #include "FrameSender.h"
+#include "FrameSender.h"
+
+using namespace BottleMail;
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
 // Message Handling
@@ -24,46 +25,68 @@ void FileManager::initialize()
   }
 }
 
-void FileManager::readMessage(const uint16_t &number)
+FileManager::error_t FileManager::openFile(const uint16_t &number, bool write)
 {
+  // Check file number
   if (!isMessageNumberValid(number))
-  {
-  }
+    return kErrorNumberInvalid;
 
+  // Get file name and options to open file
   const char *filename = getFileName(number);
+  const uint8_t options = write ? O_CREAT | O_WRITE : O_READ;
 
-  file.open(filename, O_READ);
+  // Open file
+  file.open(filename, options);
   if (!file.isOpen())
-  {
+    return write ? kErrorSpaceInsufficient : kErrorFileNotFound;
 
-    // error ("file.open");
-    return;
-  }
-
-  Serial.println(F("Please start xmodem receiver."));
-
-  doWrite = false;
-  modem.transmit();
-
-  file.close();
+  return kErrorNone;
 }
 
-void FileManager::writeMessage(const uint16_t &number)
+FileManager::error_t FileManager::readMessage(const uint16_t &number)
 {
-  const char *filename = getFileName(number);
-  file.open(filename, O_CREAT | O_WRITE);
-  if (!file.isOpen())
+  error_t error = openFile(number, false);
+  if (error)
+    return error;
+
+  sendFile();
+
+  // Close file
+  file.close();
+  return kErrorNone;
+}
+
+FileManager::error_t FileManager::writeMessage(const uint16_t &number)
+{
+  error_t error = openFile(number, true);
+  if (error)
+    return error;
+
+  bool wasCompleted = receiveFile();
+
+  if (wasCompleted)
   {
-    // error ("file.open");
-    return;
+    // Remove tailing bytes if new message is smaller
+    file.truncate(file.curPosition());
+
+    // Check if we have a new message and must increase message count
+    if (messageCount == number)
+    {
+      messageCount++;
+      writeMessageCount(messageCount);
+    }
   }
 
-  Serial.println(F("Pleas start xmodem sender."));
+  else
+    file.truncate(0);
 
-  doWrite = true;
-  modem.receive();
-  file.truncate(file.curPosition());
   file.close();
+  return wasCompleted ? kErrorNone : kErrorWriteIncomplete;
+}
+
+const uint16_t &FileManager::getMessageCount()
+{
+  return messageCount;
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
@@ -128,7 +151,7 @@ bool FileManager::isMessageNumberValid(const uint16_t &number)
   if (number == 0)
     return false;
 
-  return number <= messageCount + 1;
+  return number < messageCount + 1;
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
@@ -173,8 +196,30 @@ bool FileManager::writeFromBufferToFile(unsigned long &no, char *data)
 };
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-// XModem
+// Serial I/O
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+
+void FileManager::answerWithCommand(Command::cmd_t cmd, uint16_t value)
+{
+  Command command(cmd, value);
+  FrameSender::sendCommand(Serial, command);
+}
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+// XModem Protocol
+// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+bool FileManager::receiveFile()
+{
+  shouldReceiveFile = true;
+  return modem.receive();
+}
+
+bool FileManager::sendFile()
+{
+  shouldReceiveFile = false;
+  return modem.transmit();
+}
+
 void FileManager::sendChar(char sym)
 {
   Serial.write(sym);
@@ -195,11 +240,9 @@ int FileManager::recvChar(int msDelay)
 
 bool FileManager::dataHandler(unsigned long no, char *data, int size)
 {
-  // Receive file
-  if (doWrite)
+  if (shouldReceiveFile)
     return writeFromBufferToFile(no, data);
 
-  // Transmit file
   else
     return readFromFileToBuffer(no, data);
 }
@@ -211,6 +254,6 @@ uint16_t FileManager::messageCount = 0;
 const char *FileManager::messageCountFile = "COUNT.TXT";
 
 Fat16 FileManager::file;
-bool FileManager::doWrite = false;
+bool FileManager::shouldReceiveFile = false;
 
 XModem FileManager::modem(recvChar, sendChar, dataHandler);
