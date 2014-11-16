@@ -6,26 +6,33 @@
  */
 
 
-#ifndef MESSAGE_H_
-#define MESSAGE_H_
+#ifndef FILEMANAGER_H_
+#define FILEMANAGER_H_
 
 #include <Fat16.h>
-#include <XModem.h>
+#include "XModem.h"
 
 class FileManager
 {
   public:
+    // Message Handling
     static void initialize();
     static void readMessage(const uint16_t &number);
     static void writeMessage(const uint16_t &number);
 
+    static const uint16_t &getMessageCount()
+    {
+      return messageCount;
+    }
+
   private:
     // Message Number
+    static void writeInfoFile();
     static uint16_t readMessageCount();
     static bool writeMessageCount(const uint16_t &count);
     static bool isMessageNumberValid(const uint16_t &number);
 
-    // Message I/O
+    // File I/O
     static const char *getFileName(const uint16_t &number);
     static bool writeFromBufferToFile(unsigned long &no, char *data);
     static bool readFromFileToBuffer(unsigned long &no, char *data);
@@ -38,11 +45,12 @@ class FileManager
   private:
     static uint16_t messageCount;
     static const char *messageCountFile;
-    static bool doWrite;
+
     static Fat16 file;
+    static bool doWrite;
+
     static XModem modem;
 };
 
 
-
-#endif /* FILEMESSAGE_H_ */
+#endif

@@ -10,57 +10,19 @@
 // #include "FrameSender.h"
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-// File I/O
+// Message Handling
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-const char *FileManager::getFileName(const uint16_t &filenumber)
-{
-  // Max. file name would be "65535.TXT" + \0 = 10 chars
-  static char name[10];
-  static const char *suffix = ".TXT";
-
-  utoa(filenumber, name, 10);
-  strcat(name, suffix);
-
-  return name;
-}
-
-bool FileManager::isMessageNumberValid(const uint16_t &number)
-{
-  // Number 0 is the configuration file
-  if (number == 0)
-    return false;
-
-  return number <= messageCount + 1;
-}
-
 void FileManager::initialize()
 {
-  messageCount = 1;
+  messageCount = readMessageCount();
+
+  if (messageCount == 0)
+  {
+    writeInfoFile();
+    messageCount++;
+    writeMessageCount(messageCount);
+  }
 }
-
-bool FileManager::writeMessageCount(const uint16_t &count)
-{
-
-
-}
-
-uint16_t FileManager::readMessageCount()
-{
-  uint16_t count = 0;
-
-  file.open(messageCountFile, O_READ);
-  if (!file.isOpen())
-    return count;
-
-  int16_t readBytes = file.read(&count, sizeof(count));
-  if (readBytes != sizeof(count))
-    count = 0;
-
-  file.close();
-  return count;
-}
-
-
 
 void FileManager::readMessage(const uint16_t &number)
 {
@@ -104,42 +66,85 @@ void FileManager::writeMessage(const uint16_t &number)
   file.close();
 }
 
-/*
-int FileManager::createFile(const uint16_t &number)
+// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+// Message Number
+// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+void FileManager::writeInfoFile()
 {
-  char file_name[] = "00000.txt";
-  itoa_buffer(number, file_name, 5);
-  Serial.println(file_name);
+  static const char *str = PSTR("{\"firmware\":0.1,\"serial\":1,\"type\":0,\"date\":\"2014-11-16T16:00:00\"}");
 
-  // O_CREAT - create the file if it does not exist
-  // O_EXCL - fail if the file exists
-  // O_WRITE - open for write
-  file.open(file_name, O_CREAT | O_WRITE);
+  file.open(getFileName(0), O_CREAT | O_WRITE);
+  if (file.isOpen())
+  {
+    file.write(str);
+    file.close();
+  }
+};
+
+uint16_t FileManager::readMessageCount()
+{
+  // Open file
+  file.open(messageCountFile, O_READ);
   if (!file.isOpen())
-  {
-    // error ("file.open");
-    return -1;
-  }
+    return 0;
 
-  Serial.print(F("Writing to: "));
-  Serial.println(file_name);
-
-  // write 100 line to file
-  for (uint8_t i = 0; i < 100; i++)
-  {
-    file.write("line "); // write string from RAM
-    // writeNumber(i);
-
-    file.write_P(PSTR(" millis = ")); // write string from flash
-
-    // writeNumber(millis());
-    file.write("\r\n"); // file.println() would work also
-  }
-
-  // close file and force write of all data to the SD card
+  // Read count
+  uint16_t count;
+  int16_t readBytes = file.read(&count, sizeof(count));
   file.close();
+
+  // Return
+  if (readBytes != sizeof(count))
+    return 0;
+  else
+    return count;
 }
-*/
+
+bool FileManager::writeMessageCount(const uint16_t &count)
+{
+  // Check if count is >0 because, "0.txt" is the bottle information file.
+  if (count == 0)
+    return false;
+
+  // Open file
+  file.open(messageCountFile, O_CREAT | O_WRITE);
+  if (!file.isOpen())
+    return false;
+
+  // Write count
+  int16_t writtenBytes = file.write(&count, sizeof(count));
+  file.close();
+
+  // Return
+  if (writtenBytes != sizeof(count))
+    return false;
+  else
+    return true;
+}
+
+bool FileManager::isMessageNumberValid(const uint16_t &number)
+{
+  // Number 0 is the configuration file
+  if (number == 0)
+    return false;
+
+  return number <= messageCount + 1;
+}
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+// File I/O
+// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+const char *FileManager::getFileName(const uint16_t &filenumber)
+{
+  // Max. file name would be "65535.TXT" + \0 = 10 chars
+  static char name[10];
+  static const char *suffix = ".TXT";
+
+  utoa(filenumber, name, 10);
+  strcat(name, suffix);
+
+  return name;
+}
 
 bool FileManager::readFromFileToBuffer(unsigned long &no, char *data)
 {
@@ -162,7 +167,7 @@ bool FileManager::writeFromBufferToFile(unsigned long &no, char *data)
   if (writtenBytes == 128)
     return true;
 
-  // Abort connection, something goes wrong
+  // If something goes wrong, abort connection
   else
     return false;
 };
@@ -190,7 +195,6 @@ int FileManager::recvChar(int msDelay)
 
 bool FileManager::dataHandler(unsigned long no, char *data, int size)
 {
-
   // Receive file
   if (doWrite)
     return writeFromBufferToFile(no, data);
@@ -203,8 +207,10 @@ bool FileManager::dataHandler(unsigned long no, char *data, int size)
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
 // XModem
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-uint16_t    FileManager::messageCount = 1;
+uint16_t FileManager::messageCount = 0;
 const char *FileManager::messageCountFile = "COUNT.TXT";
-bool     FileManager::doWrite       = false;
-Fat16    FileManager::file;
-XModem   FileManager::modem = XModem(recvChar, sendChar, dataHandler);
+
+Fat16 FileManager::file;
+bool FileManager::doWrite = false;
+
+XModem FileManager::modem(recvChar, sendChar, dataHandler);

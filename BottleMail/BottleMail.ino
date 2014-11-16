@@ -6,15 +6,13 @@
 #include <Fat16.h>
 #include <Fat16util.h> // use functions to print strings from flash memory
 
-#include "Stream.h"
+
+#include "Command.h"
+#include "CommandHandler.h"
 #include "Frame.h"
 #include "FrameRecognizer.h"
 #include "FrameSender.h"
-#include "Command.h"
-#include "CommandHandler.h"
-#include <XModem.h>
-
-#include "stdint.h"
+#include "FileManager.h"
 
 const uint8_t CHIP_SELECT = SS;  // SD card chip select pin.
 SdCard card;
@@ -85,7 +83,8 @@ void loop(void)
 
   else if (byte == 'r')
   {
-    ;
+    FileManager::initialize();
+    Serial.println(FileManager::getMessageCount());
   }
 
 

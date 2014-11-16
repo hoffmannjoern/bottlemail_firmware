@@ -31,4 +31,6 @@ void loop(void);
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\Frame.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FrameRecognizer.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FrameSender.h"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\XModem.cpp"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\XModem.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\endian.h"
