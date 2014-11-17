@@ -619,6 +619,12 @@ config.path={runtime.ide.path}/hardware/tools/avr/etc/avrdude.conf
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Visual Micro\.BottleMail.vsarduino.h" />
+    <Compile Include="XModem.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="XModem.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

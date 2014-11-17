@@ -17,8 +17,14 @@
 extern "C" void __cxa_pure_virtual() {;}
 
 void error_P(const char *str);
-void setup(void);
 uint8_t receiveByte();
+void setup(void);
+inline void storeByte(uint8_t byte);
+inline bool isExecuteChar(const uint8_t byte);
+inline bool isCommandReceived();
+inline void terminateCommandBuffer();
+inline bool getValue(uint16_t &value);
+void interpreteCommand();
 void loop(void);
 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs\pins_arduino.h" 

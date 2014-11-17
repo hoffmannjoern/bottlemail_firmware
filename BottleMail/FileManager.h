@@ -26,6 +26,7 @@ class FileManager
       kErrorWriteIncomplete,
       kErrorSpaceInsufficient,
     };
+
     // Message Handling
     static void initialize();
     static error_t readMessage(const uint16_t &number);
