@@ -16,8 +16,8 @@
 #define __AVR__
 extern "C" void __cxa_pure_virtual() {;}
 
-void error_P(const char *str);
 uint8_t receiveByte();
+void setupSerial();
 void setup(void);
 inline void storeByte(uint8_t byte);
 inline bool isExecuteChar(const uint8_t byte);
@@ -30,13 +30,9 @@ void loop(void);
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs\pins_arduino.h" 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino\arduino.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\BottleMail.ino"
-#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\Command.h"
-#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\CommandHandler.h"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\BLEModule.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FileManager.cpp"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FileManager.h"
-#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\Frame.h"
-#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FrameRecognizer.h"
-#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FrameSender.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\XModem.cpp"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\XModem.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\endian.h"

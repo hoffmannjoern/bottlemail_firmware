@@ -6,7 +6,6 @@
  */
 
 #include "FileManager.h"
-#include "FrameSender.h"
 
 using namespace BottleMail;
 
@@ -196,16 +195,6 @@ bool FileManager::writeFromBufferToFile(unsigned long &no, char *data)
 };
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-// Serial I/O
-// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-
-void FileManager::answerWithCommand(Command::cmd_t cmd, uint16_t value)
-{
-  Command command(cmd, value);
-  FrameSender::sendCommand(Serial, command);
-}
-
-// --------------------------------------------------------------------------------------------------------------------------------------------------------- //
 // XModem Protocol
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
 bool FileManager::receiveFile()
@@ -253,7 +242,7 @@ bool FileManager::dataHandler(unsigned long no, char *data, int size)
 uint16_t FileManager::messageCount = 0;
 const char *FileManager::messageCountFile = "COUNT.TXT";
 
-Fat16 FileManager::file;
+SdFile FileManager::file;
 bool FileManager::shouldReceiveFile = false;
 
 XModem FileManager::modem(recvChar, sendChar, dataHandler);

@@ -75,8 +75,8 @@
       <Value>C:/Program Files (x86)/Visual Micro/Visual Micro for Arduino/Micro Platforms/default/debuggers</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
-      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16/utility</Value>
-      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16</Value>
+      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat/utility</Value>
+      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
     </ListValues>
@@ -109,8 +109,8 @@
       <Value>C:/Program Files (x86)/Visual Micro/Visual Micro for Arduino/Micro Platforms/default/debuggers</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
-      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16/utility</Value>
-      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16</Value>
+      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat/utility</Value>
+      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
     </ListValues>
@@ -123,7 +123,7 @@
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
 </AvrGccCpp>
     </ToolchainSettings>
-    <VMSETTING_IncludePaths>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16/utility;C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Program Files (x86)/Visual Micro/Visual Micro for Arduino/Micro Platforms/default/debuggers;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries;c:/program files (x86)/arduino/hardware/tools/avr/avr/include/;c:/program files (x86)/arduino/hardware/tools/avr/avr/include/avr/;c:/program files (x86)/arduino/hardware/tools/avr/avr/;c:/program files (x86)/arduino/hardware/tools/avr/lib/gcc/avr/4.3.2/include/;;C:/Program Files (x86)/Arduino/libraries/SD/src;C:/Program Files (x86)/Arduino/libraries/SD/src/utility;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI/utility;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/XModem;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/XModem/utility;C:/Program Files (x86)/Arduino/libraries/Robot_Control/src;C:/Program Files (x86)/Arduino/libraries/Robot_Control/src/utility;C:/Users/jhoffmann/Documents/Arduino/libraries/Fat16;C:/Users/jhoffmann/Documents/Arduino/libraries/Fat16/utility;C:/Users/jhoffmann/Documents/Arduino/libraries/XModem;C:/Users/jhoffmann/Documents/Arduino/libraries/XModem/utility;C:/Users/jhoffmann/Documents/Arduino/libraries;</VMSETTING_IncludePaths>
+    <VMSETTING_IncludePaths>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16/utility;C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Program Files (x86)/Visual Micro/Visual Micro for Arduino/Micro Platforms/default/debuggers;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries;c:/program files (x86)/arduino/hardware/tools/avr/avr/include/;c:/program files (x86)/arduino/hardware/tools/avr/avr/include/avr/;c:/program files (x86)/arduino/hardware/tools/avr/avr/;c:/program files (x86)/arduino/hardware/tools/avr/lib/gcc/avr/4.3.2/include/;;C:/Program Files (x86)/Arduino/libraries/SD/src;C:/Program Files (x86)/Arduino/libraries/SD/src/utility;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI/utility;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/XModem;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/XModem/utility;C:/Program Files (x86)/Arduino/libraries/Robot_Control/src;C:/Program Files (x86)/Arduino/libraries/Robot_Control/src/utility;C:/Users/jhoffmann/Documents/Arduino/libraries/Fat16;C:/Users/jhoffmann/Documents/Arduino/libraries/Fat16/utility;C:/Users/jhoffmann/Documents/Arduino/libraries/XModem;C:/Users/jhoffmann/Documents/Arduino/libraries/XModem/utility;C:/Users/jhoffmann/Documents/Arduino/libraries;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat/utility;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
         <arduino.board.name>pro_8MHzatmega328</arduino.board.name>
@@ -344,8 +344,8 @@ config.path={runtime.ide.path}/hardware/tools/avr/etc/avrdude.conf
       <Value>C:/Program Files (x86)/Visual Micro/Visual Micro for Arduino/Micro Platforms/default/debuggers</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
-      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16/utility</Value>
-      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16</Value>
+      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat/utility</Value>
+      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
     </ListValues>
@@ -378,8 +378,8 @@ config.path={runtime.ide.path}/hardware/tools/avr/etc/avrdude.conf
       <Value>C:/Program Files (x86)/Visual Micro/Visual Micro for Arduino/Micro Platforms/default/debuggers</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
-      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16/utility</Value>
-      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16</Value>
+      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat/utility</Value>
+      <Value>C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
     </ListValues>
@@ -392,7 +392,7 @@ config.path={runtime.ide.path}/hardware/tools/avr/etc/avrdude.conf
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
 </AvrGccCpp>
     </ToolchainSettings>
-    <VMSETTING_IncludePaths>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16/utility;C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Program Files (x86)/Visual Micro/Visual Micro for Arduino/Micro Platforms/default/debuggers;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries;c:/program files (x86)/arduino/hardware/tools/avr/avr/include/;c:/program files (x86)/arduino/hardware/tools/avr/avr/include/avr/;c:/program files (x86)/arduino/hardware/tools/avr/avr/;c:/program files (x86)/arduino/hardware/tools/avr/lib/gcc/avr/4.3.2/include/;;C:/Program Files (x86)/Arduino/libraries/SD/src;C:/Program Files (x86)/Arduino/libraries/SD/src/utility;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI/utility;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/XModem;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/XModem/utility;C:/Program Files (x86)/Arduino/libraries/Robot_Control/src;C:/Program Files (x86)/Arduino/libraries/Robot_Control/src/utility;C:/Users/jhoffmann/Documents/Arduino/libraries/Fat16;C:/Users/jhoffmann/Documents/Arduino/libraries/Fat16/utility;C:/Users/jhoffmann/Documents/Arduino/libraries/XModem;C:/Users/jhoffmann/Documents/Arduino/libraries/XModem/utility;C:/Users/jhoffmann/Documents/Arduino/libraries;</VMSETTING_IncludePaths>
+    <VMSETTING_IncludePaths>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/Fat16/utility;C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Program Files (x86)/Visual Micro/Visual Micro for Arduino/Micro Platforms/default/debuggers;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries;c:/program files (x86)/arduino/hardware/tools/avr/avr/include/;c:/program files (x86)/arduino/hardware/tools/avr/avr/include/avr/;c:/program files (x86)/arduino/hardware/tools/avr/avr/;c:/program files (x86)/arduino/hardware/tools/avr/lib/gcc/avr/4.3.2/include/;;C:/Program Files (x86)/Arduino/libraries/SD/src;C:/Program Files (x86)/Arduino/libraries/SD/src/utility;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI/utility;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/XModem;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/XModem/utility;C:/Program Files (x86)/Arduino/libraries/Robot_Control/src;C:/Program Files (x86)/Arduino/libraries/Robot_Control/src/utility;C:/Users/jhoffmann/Documents/Arduino/libraries/Fat16;C:/Users/jhoffmann/Documents/Arduino/libraries/Fat16/utility;C:/Users/jhoffmann/Documents/Arduino/libraries/XModem;C:/Users/jhoffmann/Documents/Arduino/libraries/XModem/utility;C:/Users/jhoffmann/Documents/Arduino/libraries;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat;C:/Users/hoffm_000.MOC/Documents/Arduino/libraries/SdFat/utility;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
         <arduino.board.name>pro_8MHzatmega328</arduino.board.name>
@@ -591,6 +591,9 @@ config.path={runtime.ide.path}/hardware/tools/avr/etc/avrdude.conf
     <Folder Include="Visual Micro\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLEModule.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="endian.h">
       <SubType>compile</SubType>
     </Compile>
@@ -598,21 +601,6 @@ config.path={runtime.ide.path}/hardware/tools/avr/etc/avrdude.conf
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="FileManager.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Frame.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="FrameRecognizer.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="FrameSender.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Command.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="CommandHandler.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Visual Micro\.BottleMail.vsarduino.h">

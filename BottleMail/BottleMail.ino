@@ -1,35 +1,11 @@
-#include "Fat16.h"
-#include "Fat16util.h"
-
-#include "Command.h"
-#include "CommandHandler.h"
-#include "Frame.h"
-#include "FrameRecognizer.h"
-#include "FrameSender.h"
+#include <SdFat.h>
 #include "FileManager.h"
+#include "BLEModule.h"
 
 using namespace BottleMail;
 
-static SdCard card;
-static CommandHandler commandHandler;
-static FrameRecognizer frameRecognizer(commandHandler);
+SdFat sd;
 const uint8_t CHIP_SELECT = SS;  // SD card chip select pin.
-
-
-// TODO: refactor to file handler
-// store error strings in flash to save RAM
-#define error(s) error_P(PSTR(s))
-
-void error_P(const char *str)
-{
-  Serial.print(F("error: "));
-  SerialPrintln_P(str);
-  if (card.errorCode)
-  {
-    Serial.print(F("SD error: "));
-    Serial.println(card.errorCode, HEX);
-  }
-}
 
 uint8_t receiveByte()
 {
@@ -40,17 +16,36 @@ uint8_t receiveByte()
   return Serial.read();
 }
 
+
+void setupSerial()
+{
+  bool initialized = true;
+  BLEModule ble(Serial);
+
+  // Set com port speed to default speed
+  Serial.begin(9600);
+  delay(100);
+
+  // Check if we can communicate with a BLE module in initial state
+  if (ble.isResponding())
+    initialized = ble.initialize();
+
+  // Module is set up, set new transfer speed
+  if (initialized)
+    Serial.begin(ble.getBaud());
+}
+
+
+
 void setup(void)
 {
-  Serial.begin(38400);
+  setupSerial();
 
   // Initialize the SD card
-  if (!card.begin(CHIP_SELECT))
-    error("card.begin");
-
-  // Initialize a FAT16 volume
-  if (!Fat16::init(&card))
-    error("Fat16::init");
+  if (!sd.begin(CHIP_SELECT, SPI_HALF_SPEED))
+  {
+    sd.initErrorHalt();
+  }
 
   FileManager::initialize();
 
@@ -123,7 +118,7 @@ void interpreteCommand()
   {
     // Show files
     Serial.println(F("Name          Modify Date/Time    Size"));
-    Fat16::ls(LS_DATE | LS_SIZE);
+    sd.ls("/", LS_R | LS_DATE | LS_SIZE);
   }
 
   else if (cmd == 'r' && hasValue)

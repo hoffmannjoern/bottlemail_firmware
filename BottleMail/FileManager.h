@@ -9,9 +9,8 @@
 #ifndef FILEMANAGER_H_
 #define FILEMANAGER_H_
 
-#include <Fat16.h>
+#include <SdFat.h>
 #include "XModem.h"
-#include "Command.h"
 
 namespace BottleMail {
 
@@ -46,9 +45,6 @@ class FileManager
     static bool writeFromBufferToFile(unsigned long &no, char *data);
     static bool readFromFileToBuffer(unsigned long &no, char *data);
 
-    // Serial I/O
-    static void answerWithCommand(Command::cmd_t cmd, uint16_t value);
-
     // XModem Protocol
     static bool sendFile();
     static bool receiveFile();
@@ -60,7 +56,7 @@ class FileManager
     static uint16_t messageCount;
     static const char *messageCountFile;
 
-    static Fat16 file;
+    static SdFile file;
     static bool shouldReceiveFile;
 
     static XModem modem;
