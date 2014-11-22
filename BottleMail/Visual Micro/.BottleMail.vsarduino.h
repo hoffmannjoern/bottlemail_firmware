@@ -19,20 +19,18 @@ extern "C" void __cxa_pure_virtual() {;}
 uint8_t receiveByte();
 void setupSerial();
 void setup(void);
-inline void storeByte(uint8_t byte);
-inline bool isExecuteChar(const uint8_t byte);
-inline bool isCommandReceived();
-inline void terminateCommandBuffer();
-inline bool getValue(uint16_t &value);
-void interpreteCommand();
 void loop(void);
 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs\pins_arduino.h" 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino\arduino.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\BottleMail.ino"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\BLEModule.cpp"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\BLEModule.h"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\CommandInterpreter.cpp"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\CommandInterpreter.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FileManager.cpp"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\FileManager.h"
+#include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\SDCard.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\XModem.cpp"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\XModem.h"
 #include "C:\Users\hoffm_000.MOC\Documents\Arduino\BottleMail\endian.h"

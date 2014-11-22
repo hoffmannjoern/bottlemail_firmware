@@ -26,19 +26,19 @@ class FileManager
       kErrorWriteIncomplete,
       kErrorSpaceInsufficient,
     };
-    
+
     // General
     static void initialize();
-    
+
     // Message Handling
     static error_t readMessage(const uint16_t &number);
     static error_t writeMessage(const uint16_t &number);
     static const uint16_t &getMessageCount();
 
   private:
-    // General 
+    // General
     static void writeInfoFile();
-    
+
     // Message Count
     static uint16_t readMessageCount();
     static bool writeMessageCount(const uint16_t &count);
@@ -60,11 +60,11 @@ class FileManager
   private:
     // File Variables
     static SdFile file;
-  
+
     // Message Variables
     static uint16_t messageCount;
     static const char *messageCountFile;
-   
+
     // Xmodem Variables
     static bool shouldReceiveFile;
     static XModem modem;

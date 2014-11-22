@@ -591,7 +591,16 @@ config.path={runtime.ide.path}/hardware/tools/avr/etc/avrdude.conf
     <Folder Include="Visual Micro\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLEModule.cpp">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="BLEModule.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CommandInterpreter.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CommandInterpreter.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="endian.h">
@@ -601,6 +610,9 @@ config.path={runtime.ide.path}/hardware/tools/avr/etc/avrdude.conf
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="FileManager.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SDCard.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Visual Micro\.BottleMail.vsarduino.h">
