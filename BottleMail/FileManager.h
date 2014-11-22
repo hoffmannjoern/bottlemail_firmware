@@ -9,7 +9,8 @@
 #ifndef FILEMANAGER_H_
 #define FILEMANAGER_H_
 
-#include <SdFat.h>
+#include <SdFile.h>
+#include <stdint.h>
 #include "XModem.h"
 
 namespace BottleMail {
@@ -25,16 +26,20 @@ class FileManager
       kErrorWriteIncomplete,
       kErrorSpaceInsufficient,
     };
-
-    // Message Handling
+    
+    // General
     static void initialize();
+    
+    // Message Handling
     static error_t readMessage(const uint16_t &number);
     static error_t writeMessage(const uint16_t &number);
     static const uint16_t &getMessageCount();
 
   private:
-    // Message Number
+    // General 
     static void writeInfoFile();
+    
+    // Message Count
     static uint16_t readMessageCount();
     static bool writeMessageCount(const uint16_t &count);
     static bool isMessageNumberValid(const uint16_t &number);
@@ -53,14 +58,18 @@ class FileManager
     static bool dataHandler(unsigned long no, char *data, int size);
 
   private:
+    // File Variables
+    static SdFile file;
+  
+    // Message Variables
     static uint16_t messageCount;
     static const char *messageCountFile;
-
-    static SdFile file;
+   
+    // Xmodem Variables
     static bool shouldReceiveFile;
-
     static XModem modem;
 };
 
 }
 #endif
+
