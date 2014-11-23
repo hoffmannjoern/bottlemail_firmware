@@ -15,7 +15,7 @@ bool BLEModule::isResponding() const
 
   // Read answer byte-by-byte
   // We expect only a "OK"
-  // TODO: refactor this method
+  // TODO: refactor, generalize and simplify this method to catch other answers
   char recv[2];
   for (int index = 0; index < 2; index++)
   {
@@ -27,6 +27,22 @@ bool BLEModule::isResponding() const
 
   // Return true if "OK" received
   return (recv[0] == 'O' && recv[1] == 'K');
+}
+
+bool BLEModule::setup()
+{
+  configured = true;
+
+  // Check if the BLE module is responding at initial state and is therefore not programmed
+  setBaud(9600);
+  if (isResponding())
+    configured = configure();
+
+  // Set new transfer speed
+  if (configured)
+    setBaud(38400);
+
+  return configured;
 }
 
 bool BLEModule::configure()
@@ -56,9 +72,7 @@ bool BLEModule::configure()
     com.read();
 
   // TODO: check AT command answers!
-  isConfigured = true;
-  return isConfigured;
+  return true;
 }
-
 
 }

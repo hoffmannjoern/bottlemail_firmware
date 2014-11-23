@@ -17,7 +17,6 @@
 extern "C" void __cxa_pure_virtual() {;}
 
 uint8_t receiveByte();
-void setupSerial();
 void setup(void);
 void loop(void);
 

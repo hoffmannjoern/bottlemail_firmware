@@ -20,7 +20,7 @@ namespace BottleMail {
 class BLEModule
 {
   public:
-    BLEModule(Stream &com) : com(com), isConfigured(false) {};
+    BLEModule(HardwareSerial &com) : com(com), configured(false), baud(9600) {};
 
     /**
        * Sends the AT command to check if BLE module is answering.
@@ -29,26 +29,45 @@ class BLEModule
     bool isResponding() const;
 
     /**
-        *  Send initializing commands to the module.
+        *  Checks if the BLEmodule is responding, otherwise sends configuration commands to the module.
+        * \return True if the module is present and if it is configured, false otherwise.
         */
-    bool configure();
+    bool setup();
 
     /**
         * Returns the set baud rate f the module
         * \return Currently returns 38400 if the is configured or 9600 when not.
         */
-    inline uint32_t getBaud() const
+    inline const uint32_t &getBaud() const
     {
-      if (isConfigured)
-        return 38400;
+      return baud;
+    }
 
-      else
-        return 9600;
+    /**
+         * Returns the configured state
+         * @return True if the module is configured.
+         */
+    inline bool isConfigured() const
+    {
+      return configured;
     }
 
   private:
-    Stream &com;
-    bool isConfigured;
+    /**
+         *  Send configuration commands to the module.
+         */
+    bool configure();
+
+    inline void setBaud(uint32_t newBaud)
+    {
+      baud = newBaud;
+      com.begin(baud);
+      delay(10);
+    }
+
+    HardwareSerial &com;
+    bool configured;
+    uint32_t baud;
 };
 
 

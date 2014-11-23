@@ -21,34 +21,17 @@ uint8_t receiveByte()
   return Serial.read();
 }
 
-void setupSerial()
-{
-  BLEModule ble(Serial);
-  bool initialized = true;
-
-  // Set default serial speed
-  Serial.begin(9600);
-  delay(100);
-
-  // Check if the BLE module is responding at initial speed.
-  // Thus, it is not configured.
-  if (ble.isResponding())
-    initialized = ble.configure();
-
-  // Module is set up, set new transfer speed
-  if (initialized)
-    Serial.begin(ble.getBaud());
-}
-
 void setup(void)
 {
-  setupSerial();
+  BLEModule ble(Serial);
 
+  // Setup the module
+  ble.setup();
   sdcard.initialize();
   fileManager.initialize();
 
   Serial.println();
-  Serial.println(F("Type any character to start"));
+  Serial.println(F("Type any character to start."));
 }
 
 void loop(void)
