@@ -21,19 +21,21 @@ class FileManager
     enum error_t
     {
       kErrorNone = 0,
-      kErrorNumberInvalid,
-      kErrorFileNotFound,
-      kErrorWriteIncomplete,
-      kErrorSpaceInsufficient,
+      kErrorNumberInvalid,        // 1
+      kErrorNotFound,             // 2
+      kErrorWriteIncomplete,      // 3
+      kErrorSpaceInsufficient,    // 4
+      kErrorNotAllowed,           // 5
     };
 
     // General
     static void initialize();
 
     // Message Handling
-    static error_t readMessage(const uint16_t &number);
-    static error_t writeMessage(const uint16_t &number);
-    static const uint16_t &getMessageCount();
+    static error_t select(const uint16_t &number, bool write);
+    static error_t read(const uint16_t &number);
+    static error_t write(const uint16_t &number);
+    static const uint16_t &getCount();
 
   private:
     // General
@@ -41,12 +43,14 @@ class FileManager
 
     // Message Count
     static uint16_t readMessageCount();
-    static bool writeMessageCount(const uint16_t &count);
     static bool isMessageNumberValid(const uint16_t &number);
+    static bool isMessageAccessable(const uint16_t &number, const bool &write);
+    static void setNewMessageCount(const uint16_t &number);
+    static bool writeMessageCount(const uint16_t &count);
 
     // File I/O
+    static error_t checkSelectedFile(const uint16_t &number);
     static const char *getFileName(const uint16_t &number);
-    static error_t openFile(const uint16_t &number, bool write);
     static bool writeFromBufferToFile(unsigned long &no, char *data);
     static bool readFromFileToBuffer(unsigned long &no, char *data);
 
@@ -62,6 +66,7 @@ class FileManager
     static SdFile file;
 
     // Message Variables
+    static uint16_t selectedMessage;
     static uint16_t messageCount;
     static const char *messageCountFile;
 

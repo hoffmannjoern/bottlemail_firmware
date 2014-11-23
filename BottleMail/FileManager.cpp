@@ -19,19 +19,25 @@ void FileManager::initialize()
   if (messageCount == 0)
   {
     writeInfoFile();
-    messageCount++;
-    writeMessageCount(messageCount);
+    setNewMessageCount(messageCount + 1);
   }
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
 // Message Handling
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
-FileManager::error_t FileManager::openFile(const uint16_t &number, bool write)
+FileManager::error_t FileManager::select(const uint16_t &number, bool write)
 {
-  // Check file number
+  // Close previous file
+  if (file.isOpen())
+    file.close();
+
+  // Check message number and operation
   if (!isMessageNumberValid(number))
     return kErrorNumberInvalid;
+
+  else if (!isMessageAccessable(number, write))
+    return kErrorNotAllowed;
 
   // Get file name and options to open file
   const char *filename = getFileName(number);
@@ -40,14 +46,15 @@ FileManager::error_t FileManager::openFile(const uint16_t &number, bool write)
   // Open file
   file.open(filename, options);
   if (!file.isOpen())
-    return write ? kErrorSpaceInsufficient : kErrorFileNotFound;
+    return write ? kErrorSpaceInsufficient : kErrorNotFound;
 
+  selectedMessage = number;
   return kErrorNone;
 }
 
-FileManager::error_t FileManager::readMessage(const uint16_t &number)
+FileManager::error_t FileManager::read(const uint16_t &number)
 {
-  error_t error = openFile(number, false);
+  error_t error = checkSelectedFile(number);
   if (error)
     return error;
 
@@ -58,25 +65,20 @@ FileManager::error_t FileManager::readMessage(const uint16_t &number)
   return kErrorNone;
 }
 
-FileManager::error_t FileManager::writeMessage(const uint16_t &number)
+FileManager::error_t FileManager::write(const uint16_t &number)
 {
-  error_t error = openFile(number, true);
+  error_t error = checkSelectedFile(number);
   if (error)
     return error;
 
   bool wasCompleted = receiveFile();
-
   if (wasCompleted)
   {
     // Remove tailing bytes if new message is smaller
     file.truncate(file.curPosition());
 
-    // Check if we have a new message and must increase message count
-    if (messageCount == number)
-    {
-      messageCount++;
-      writeMessageCount(messageCount);
-    }
+    // Set new message count (if it is really a new message)
+    setNewMessageCount(selectedMessage);
   }
 
   else
@@ -86,7 +88,8 @@ FileManager::error_t FileManager::writeMessage(const uint16_t &number)
   return wasCompleted ? kErrorNone : kErrorWriteIncomplete;
 }
 
-const uint16_t &FileManager::getMessageCount()
+
+const uint16_t &FileManager::getCount()
 {
   return messageCount;
 }
@@ -102,6 +105,7 @@ void FileManager::writeInfoFile()
   if (file.isOpen())
   {
     file.write(str);
+    file.truncate(file.curPosition());
     file.close();
   }
 };
@@ -109,6 +113,17 @@ void FileManager::writeInfoFile()
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
 // Message Count
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+void FileManager::setNewMessageCount(const uint16_t &number)
+{
+  // Check if we have a new message and must increase message count
+  if (messageCount == number)
+  {
+    uint16_t newMessageCount = messageCount + 1;
+    if (writeMessageCount(newMessageCount))
+      messageCount = newMessageCount;
+  }
+}
+
 uint16_t FileManager::readMessageCount()
 {
   // Open file
@@ -152,16 +167,33 @@ bool FileManager::writeMessageCount(const uint16_t &count)
 
 bool FileManager::isMessageNumberValid(const uint16_t &number)
 {
-  // Number 0 is the configuration file
-  if (number == 0)
-    return false;
-
   return number < messageCount + 1;
 }
+
+bool FileManager::isMessageAccessable(const uint16_t &number, const bool &write)
+{
+  // Dismiss to write the config file
+  if (write && number == 0)
+    return false;
+
+  return true;
+}
+
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
 // File I/O
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- //
+FileManager::error_t FileManager::checkSelectedFile(const uint16_t &number)
+{
+  if (!file.isOpen())
+    return kErrorNotFound;
+
+  else if (number != selectedMessage)
+    return kErrorNumberInvalid;
+
+  return kErrorNone;
+}
+
 const char *FileManager::getFileName(const uint16_t &filenumber)
 {
   // Max. file name would be "65535.TXT" + \0 = 10 chars
@@ -249,6 +281,7 @@ bool FileManager::dataHandler(unsigned long no, char *data, int size)
 SdFile FileManager::file;
 
 // Message Variables
+uint16_t FileManager::selectedMessage = 0;
 uint16_t FileManager::messageCount = 0;
 const char *FileManager::messageCountFile = "COUNT.TXT";
 

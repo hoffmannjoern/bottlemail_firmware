@@ -16,7 +16,15 @@ namespace BottleMail {
 class CommandInterpreter
 {
   public:
-    static const uint8_t commandToken = '\n';
+    enum command : uint8_t
+    {
+      kCommandRead = 'r',
+      kCommandWrite = 'w',
+      kCommandAppend = 'a',
+      kCommandMessageCount = 'm',
+      kCommandList = 'l',
+      kCommandToken = '\n'
+    };
 
     /**
         * Initializes the interpreter to process incoming bytes.
@@ -37,6 +45,7 @@ class CommandInterpreter
     inline void transformCommandBufferToString();
     inline bool getValue(uint16_t &value) const;
     void interpreteCommand();
+    void readWriteMessage(const uint16_t &messageNumber, const bool write);
 
   private:
     SDCard &sdCard;
@@ -64,7 +73,7 @@ inline void CommandInterpreter::storeByte(const uint8_t &byte)
   */
 inline bool CommandInterpreter::isCommandToken(const uint8_t &byte) const
 {
-  return (byte == commandToken);
+  return (byte == kCommandToken);
 }
 
 /**

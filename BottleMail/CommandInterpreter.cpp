@@ -24,30 +24,42 @@ void CommandInterpreter::interpreteCommand()
 {
   transformCommandBufferToString();
   uint8_t cmd = commandBuffer[0];
+
   uint16_t value = 0;
   bool hasValue = getValue(value);
 
-  if (cmd == 'l')
+  if (cmd == kCommandRead && hasValue)
+    readWriteMessage(value, false);
+
+  else if (cmd == kCommandWrite && hasValue)
+    readWriteMessage(value, true);
+
+  else if (cmd == kCommandAppend)
+    readWriteMessage(fileManager.getCount(), true);
+
+  else if (cmd == kCommandMessageCount)
+    Serial.println(fileManager.getCount());
+
+  else if (cmd == kCommandList)
     sdCard.listRootDir();
+}
 
-  else if (cmd == 'r' && hasValue)
-  {
-    FileManager::error_t err;
-    err = FileManager::readMessage(value);
-    Serial.println(err);
-  }
 
-  else if (cmd == 'w' && hasValue)
-  {
-    FileManager::error_t err;
-    err = FileManager::writeMessage(value);
-    Serial.println(err);
-  }
+void CommandInterpreter::readWriteMessage(const uint16_t &messageNumber, const bool write)
+{
+  // Select
+  FileManager::error_t error = fileManager.select(messageNumber, write);
+  Serial.println(error);
+  if (error)
+    return;
 
-  else if (cmd == 'm')
-  {
-    Serial.println(FileManager::getMessageCount());
-  }
+  // Do operation
+  if (write)
+    error = fileManager.write(messageNumber);
+  else
+    error = FileManager::read(messageNumber);
+
+  Serial.println(error);
 }
 
 }
