@@ -8,7 +8,6 @@
 #include "CommandInterpreter.h"
 namespace BottleMail {
 
-
 void CommandInterpreter::processByte(const uint8_t byte)
 {
   storeByte(byte);
@@ -38,7 +37,7 @@ void CommandInterpreter::interpreteCommand()
     readWriteMessage(fileManager.getCount(), true);
 
   else if (cmd == kCommandMessageCount)
-    Serial.println(fileManager.getCount());
+    answer(fileManager.getCount());
 
   else if (cmd == kCommandList)
     sdCard.listRootDir();
@@ -48,18 +47,19 @@ void CommandInterpreter::interpreteCommand()
 void CommandInterpreter::readWriteMessage(const uint16_t &messageNumber, const bool write)
 {
   // Select
-  FileManager::error_t error = fileManager.select(messageNumber, write);
-  Serial.println(error);
+  FileManager::error_t error;
+  error = fileManager.select(messageNumber, write);
+  answer(error);
   if (error)
     return;
 
-  // Do operation
+  // Perform operation
   if (write)
     error = fileManager.write(messageNumber);
   else
     error = FileManager::read(messageNumber);
 
-  Serial.println(error);
+  answer(error);
 }
 
 }

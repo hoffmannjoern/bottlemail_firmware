@@ -47,6 +47,9 @@ class CommandInterpreter
     void interpreteCommand();
     void readWriteMessage(const uint16_t &messageNumber, const bool write);
 
+    template<typename T>
+    inline void answer(T obj);
+
   private:
     SDCard &sdCard;
     FileManager &fileManager;
@@ -112,6 +115,13 @@ inline bool CommandInterpreter::getValue(uint16_t &value) const
   }
 
   return false;
+}
+
+template<typename T>
+inline void CommandInterpreter::answer(T obj)
+{
+  Serial.print(obj);
+  Serial.print('\n');
 }
 
 }

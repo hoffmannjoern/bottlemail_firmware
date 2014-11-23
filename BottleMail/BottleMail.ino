@@ -30,8 +30,7 @@ void setup(void)
   sdcard.initialize();
   fileManager.initialize();
 
-  Serial.println();
-  Serial.println(F("Type any character to start."));
+  Serial.println(F(" **** BOTTL(E)MAIL ARDUINO V1 ****\n\n 2K RAM SYSTEM  1024 C BYTES FREE\n\nREADY."));
 }
 
 void loop(void)

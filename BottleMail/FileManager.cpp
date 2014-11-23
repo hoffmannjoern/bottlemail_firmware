@@ -19,7 +19,7 @@ void FileManager::initialize()
   if (messageCount == 0)
   {
     writeInfoFile();
-    setNewMessageCount(messageCount + 1);
+    setNewMessageCount(1);
   }
 }
 
@@ -72,20 +72,18 @@ FileManager::error_t FileManager::write(const uint16_t &number)
     return error;
 
   bool wasCompleted = receiveFile();
-  if (wasCompleted)
+  if (!wasCompleted)
   {
-    // Remove tailing bytes if new message is smaller
-    file.truncate(file.curPosition());
-
-    // Set new message count (if it is really a new message)
-    setNewMessageCount(selectedMessage);
+    file.truncate(0);
+    file.close();
+    return kErrorWriteIncomplete;
   }
 
-  else
-    file.truncate(0);
-
+  // Tailor file to new message length.
+  file.truncate(file.curPosition());
   file.close();
-  return wasCompleted ? kErrorNone : kErrorWriteIncomplete;
+  setNewMessageCount(number);
+  return kErrorNone;
 }
 
 
@@ -167,7 +165,7 @@ bool FileManager::writeMessageCount(const uint16_t &count)
 
 bool FileManager::isMessageNumberValid(const uint16_t &number)
 {
-  return number < messageCount + 1;
+  return number <= messageCount;
 }
 
 bool FileManager::isMessageAccessable(const uint16_t &number, const bool &write)
