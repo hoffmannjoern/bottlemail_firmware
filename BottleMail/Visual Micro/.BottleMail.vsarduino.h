@@ -16,9 +16,10 @@
 #define __AVR__
 extern "C" void __cxa_pure_virtual() {;}
 
-uint8_t receiveByte();
 void setup(void);
 void loop(void);
+void wakeup_isr();
+void sleep_now();
 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs\pins_arduino.h" 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino\arduino.h"
