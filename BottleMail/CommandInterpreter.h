@@ -44,7 +44,7 @@ class CommandInterpreter
     inline bool isCommandToken(const uint8_t &byte) const;
     inline void transformCommandBufferToString();
     inline bool getValue(uint16_t &value) const;
-    void interpreteCommand();
+    void interpretCommand();
     void readWriteMessage(const uint16_t &messageNumber, const bool write);
 
     template<typename T>

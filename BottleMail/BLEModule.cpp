@@ -56,6 +56,7 @@ bool BLEModule::configure()
   delay(50);
 
   // Disable connection saving
+  //FIXME: Is this an error? I suggest it should be AT+SAVE0
   com.print(F("ST+SAVE0"));
   delay(50);
 

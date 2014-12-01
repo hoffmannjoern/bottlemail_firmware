@@ -13,13 +13,13 @@ void CommandInterpreter::processByte(const uint8_t byte)
   storeByte(byte);
 
   if (detectCommand())
-    interpreteCommand();
+    interpretCommand();
 
   if (isCommandToken(byte))
     idx = 0;
 }
 
-void CommandInterpreter::interpreteCommand()
+void CommandInterpreter::interpretCommand()
 {
   transformCommandBufferToString();
   uint8_t cmd = commandBuffer[0];

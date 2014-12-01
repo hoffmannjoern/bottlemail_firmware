@@ -204,6 +204,7 @@ const char *FileManager::getFileName(const uint16_t &filenumber)
   return name;
 }
 
+//FIXME: reference to "no" is unused
 bool FileManager::readFromFileToBuffer(unsigned long &no, char *data)
 {
   int16_t readBytes = file.read(data, 128);
@@ -217,6 +218,7 @@ bool FileManager::readFromFileToBuffer(unsigned long &no, char *data)
     return false;
 }
 
+//FIXME: reference to "no" is unused
 bool FileManager::writeFromBufferToFile(unsigned long &no, char *data)
 {
   int16_t writtenBytes = file.write(data, 128);
@@ -263,6 +265,7 @@ int FileManager::recvChar(int msDelay)
   return -1;
 }
 
+//FIXME: "size" is unused
 bool FileManager::dataHandler(unsigned long no, char *data, int size)
 {
   if (shouldReceiveFile)
